@@ -495,3 +495,51 @@ tbody tr:last-of-type td {
     border-color: transparent;
 }
 
+
+/* Coming Soon / Locked Levels */
+.level-card.coming-soon {
+    position: relative;
+    cursor: not-allowed;
+    background: #fdfdfd;
+    border-color: #eee;
+    overflow: hidden;
+}
+
+.level-card.coming-soon::after {
+    content: '🚧 Under Construction';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-10deg);
+    background: var(--theme-primary);
+    color: var(--white);
+    padding: 10px 20px;
+    font-weight: bold;
+    font-size: 1.2rem;
+    white-space: nowrap;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    border: 2px dashed rgba(255,255,255,0.5);
+    z-index: 10;
+    border-radius: 8px;
+    opacity: 0.95;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.level-card.coming-soon:hover::after {
+    transform: translate(-50%, -50%) rotate(0deg) scale(1.1);
+}
+
+.level-card.coming-soon .card-icon,
+.level-card.coming-soon h3,
+.level-card.coming-soon p,
+.level-card.coming-soon .card-link {
+    opacity: 0.3;
+    filter: blur(1px);
+    pointer-events: none;
+}
+
+.level-card.coming-soon:hover {
+    transform: none;
+    box-shadow: var(--shadow-sm);
+}
+
