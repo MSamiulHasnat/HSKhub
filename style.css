@@ -543,3 +543,27 @@ tbody tr:last-of-type td {
     box-shadow: var(--shadow-sm);
 }
 
+
+/* Report Flag */
+.report-btn {
+    opacity: 0.2;
+    cursor: pointer;
+    font-size: 0.9rem;
+    margin-left: 8px;
+    background: none;
+    border: none;
+    color: #d32f2f; /* Red by default for alert */
+    transition: opacity 0.2s;
+}
+
+tr:hover .report-btn,
+.sentence-card:hover .report-btn,
+.level-card:hover .report-btn {
+    opacity: 1;
+}
+
+.report-btn:hover {
+    transform: scale(1.2);
+    opacity: 1;
+}
+

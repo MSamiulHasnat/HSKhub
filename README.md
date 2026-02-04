@@ -52,7 +52,7 @@ To run HSKhub locally, you don't need `npm` or `node_modules`.
 
 1.  **Clone the repository**
     ```bash
-    git clone https://github.com/yourusername/HSKhub.git
+    git clone https://github.com/MSamiulHasnat/HSKhub.git
     cd HSKhub
     ```
 
@@ -105,6 +105,12 @@ Contributions are what make the open-source community such an amazing place to l
 
 ### Content Contribution
 Helping us digitize HSK texts or checking JSON files for typos is a massive help! Check the `data/` folder for the structure.
+
+### 🚩 Reporting Mistakes
+Found a typo or wrong pinyin?
+- Click the **Flag Icon (⚑)** next to any word or sentence in the app.
+- This will automatically open a GitHub Issue pre-filled with the item's details.
+- Just click "Submit New Issue" to alert us!
 
 ---
 

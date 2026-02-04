@@ -1,5 +1,14 @@
 // Reader Logic for HSKHub
 
+// --- Configuration (Same as App.js) ---
+const REPORT_URL_TEMPLATE = "https://github.com/MSamiulHasnat/HSKhub/issues/new?title=Data+Error&body=CONTEXT_PLACEHOLDER";
+
+function openReport(context) {
+    const safeContext = encodeURIComponent(`Reported Issue (Reader):\n\n${context}\n\n[Please describe the error here]`);
+    const url = REPORT_URL_TEMPLATE.replace('CONTEXT_PLACEHOLDER', safeContext);
+    window.open(url, '_blank');
+}
+
 // --- Theme Management (Reused) ---
 function initTheme() {
     const savedColor = localStorage.getItem('hsk-color') || 'red';
@@ -152,7 +161,14 @@ function loadChapter(id) {
         const cardMap = [];
 
         section.words.forEach(sentence => {
-            const card = createSentenceCard(sentence);
+            const contextInfo = {
+                level: bookData.info.level, // e.g., "HSK 4"
+                chapterId: id,
+                chapterTitle: chapter.title,
+                sectionTitle: section.title || `Text ${index + 1}`
+            };
+
+            const card = createSentenceCard(sentence, contextInfo);
             sectionDiv.appendChild(card);
             
             // Extract Speaker and Content for Audio Context
@@ -342,13 +358,12 @@ const originalLoadChapter = loadChapter; // Store reference if needed (recursion
 // Better: Add stopAudio() to the beginning of loadChapter or window unload
 
 
-function createSentenceCard(data) {
+function createSentenceCard(data, context = {}) {
     const card = document.createElement('div');
     card.className = 'sentence-card';
     card.classList.toggle('has-visible-content', showPinyin || showMeaning); // Initial state
     
-    // Detect Speaker (e.g., "Sun Yue: ...")
-    // Regex looks for "Name:" or "Name：" at the start
+    // Detect Speaker
     let hanziHtml = data.hanzi;
     const speakerRegex = /^([^：:]+[：:])(.*)/;
     const match = data.hanzi.match(speakerRegex);
@@ -357,13 +372,32 @@ function createSentenceCard(data) {
         hanziHtml = `<span class="speaker-name">${match[1]}</span>${match[2]}`;
     }
 
+    // Truncate function for report context
+    const snippet = data.hanzi.substring(0, 30);
+    const locationStr = context.level ? `${context.level} > Ch.${context.chapterId} > ${context.sectionTitle}` : 'Reader Mode';
+    
+    // Pass full details to report function
+    const reportDetails = `Location: ${locationStr}\nSentence: ${snippet}...`;
+
     card.innerHTML = `
-        <div class="hanzi-line">${hanziHtml}</div>
+        <div class="hanzi-line">
+            ${hanziHtml}
+            <button class="report-btn" title="Report mistake" style="float:right;">⚑</button>
+        </div>
         <div class="meta-data">
             <div class="pinyin-line">${data.pinyin}</div>
             <div class="meaning-line">${data.meaning}</div>
         </div>
     `;
+    
+    // Attach listener via JS to avoid quote escaping issues in HTML attributes
+    const btn = card.querySelector('.report-btn');
+    if (btn) {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            openReport(reportDetails);
+        });
+    }
 
     // Click to toggle specifically for this card
     card.addEventListener('click', () => {

@@ -1,5 +1,13 @@
 // Main application logic for HSKHub
 
+// --- Configuration ---
+// TO USER: Create a Google Form with a text field for "Issue Details".
+// Get the "pre-filled link" to find the entry ID (e.g., entry.123456789).
+// Replace the URL below. Use 'CONTEXT_PLACEHOLDER' where the text should go.
+// Example: "https://docs.google.com/forms/d/e/.../viewform?usp=pp_url&entry.123456=CONTEXT_PLACEHOLDER"
+// For now, we fallback to a GitHub Issue search/new URL which is open-source standard.
+const REPORT_URL_TEMPLATE = "https://github.com/MSamiulHasnat/HSKhub/issues/new?title=Data+Error&body=CONTEXT_PLACEHOLDER";
+
 // Theme Handling
 function initTheme() {
     // 1. Get saved preferences or use defaults
@@ -215,6 +223,13 @@ function normalizeData(data) {
     return [];
 }
 
+// Helper: Open Report Window
+function openReport(context) {
+    const safeContext = encodeURIComponent(`Reported Issue:\n\n${context}\n\n[Please describe the error here]`);
+    const url = REPORT_URL_TEMPLATE.replace('CONTEXT_PLACEHOLDER', safeContext);
+    window.open(url, '_blank');
+}
+
 // 4. Dynamic HTML Injection
 function renderTable(groups) {
     const tbody = document.getElementById('vocab-body');
@@ -294,14 +309,33 @@ function renderTable(groups) {
                 `;
             }
 
+            // Report Button
+            // We'll attach the listener after creating the element to handle quotes safely
+            const reportBtnHtml = `<button class="report-btn" title="Report mistake">⚑</button>`;
+
             row.innerHTML = `
-                <td style="color: var(--text-light); font-size: 0.9em;">${serialNumber++}</td>
+                <td style="color: var(--text-light); font-size: 0.9em;">
+                    ${serialNumber++}
+                    ${reportBtnHtml}
+                </td>
                 <td><span class="hanzi-main">${word.hanzi}</span></td>
                 <td>${word.pinyin}</td>
                 <td>${word.meaning}</td>
                 <td>${partOfSpeech}</td>
                 <td>${sentenceHtml}</td>
             `;
+            
+            // Attach event listener
+            const btn = row.querySelector('.report-btn');
+            if (btn) {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation(); // Stop row click (accordion)
+                    
+                    // Add Level and Chapter context
+                    const location = group.title ? `HSK ${level} - ${group.title}` : `HSK ${level}`;
+                    openReport(`${location}\nWord: ${word.hanzi} (${word.pinyin})`);
+                });
+            }
 
             // Append to the table body
             tbody.appendChild(row);
