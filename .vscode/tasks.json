@@ -1,0 +1,27 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "append_styles",
+			"type": "shell",
+			"command": "powershell",
+			"args": [
+				"-c",
+				"echo \"/* Sentence Block Styles */\n.sentence-block {\n    font-size: 0.9rem;\n    line-height: 1.4;\n}\n.sentence-block .cn {\n    font-family: var(--font-cn);\n    font-size: 1.1rem;\n    color: var(--text-dark);\n}\n.sentence-block .py {\n    color: var(--theme-primary);\n    font-style: italic;\n    font-size: 0.85rem;\n}\n.sentence-block .en {\n    color: var(--text-light);\n    font-size: 0.85rem;\n}\n.hanzi-main {\n    font-family: var(--font-cn);\n    font-size: 1.4rem;\n    font-weight: bold;\n}\" >> style.css"
+			],
+			"isBackground": false,
+			"group": "build"
+		},
+		{
+			"label": "append_header_styles",
+			"type": "shell",
+			"command": "powershell",
+			"args": [
+				"-c",
+				"echo \"\n/* Chapter Header in Table */\n.chapter-header td {\n    background-color: var(--theme-bg-alpha);\n    color: var(--theme-primary-dark);\n    font-weight: 700;\n    text-align: center;\n    font-size: 1.1rem;\n    padding: 15px;\n    border-top: 2px solid var(--theme-primary);\n}\n\" >> style.css"
+			],
+			"isBackground": false,
+			"group": "build"
+		}
+	]
+}

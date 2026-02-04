@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HSK Reader</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Reader Specific Styles to avoid polluting style.css until confirmed */
+        .reader-layout {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 20px;
+            align-items: start;
+        }
+
+        /* Sidebar */
+        .chapter-sidebar {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow-sm);
+            max-height: calc(100vh - 100px);
+            overflow-y: auto;
+            position: sticky;
+            top: 20px;
+        }
+
+        .chapter-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .chapter-item {
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+            border-left: 3px solid transparent;
+        }
+
+        .chapter-item:hover {
+            background: var(--bg-light);
+        }
+
+        .chapter-item.active {
+            background: var(--theme-bg-alpha);
+            color: var(--theme-primary);
+            border-left-color: var(--theme-primary);
+            font-weight: 600;
+        }
+
+        /* Content Area */
+        .reader-content {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 3rem;
+            box-shadow: var(--shadow-md);
+            min-height: 80vh;
+        }
+
+        .text-section {
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--theme-primary-dark);
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--bg-light);
+        }
+
+        /* Sentence Card */
+        .sentence-card {
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid transparent;
+            position: relative;
+        }
+
+        .sentence-card:hover {
+            background-color: var(--bg-light);
+            transform: translateX(5px);
+        }
+
+        .sentence-card.active-card {
+            background-color: var(--white);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            border-color: var(--theme-primary);
+            transform: scale(1.02);
+        }
+
+        .hanzi-line {
+            font-size: 1.6rem;
+            font-family: var(--font-cn);
+            color: var(--text-dark);
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Speaker highlights */
+        .speaker-name {
+            font-weight: bold;
+            color: var(--theme-primary);
+            margin-right: 0.5rem;
+        }
+
+        .meta-data {
+            /* Now just a container, visibility handled by children */
+            margin-top: 0;
+            padding-top: 0;
+            border-top: none;
+            transition: all 0.4s ease;
+        }
+        
+        /* When any content is visible, add spacing */
+        .sentence-card.has-visible-content .meta-data {
+             margin-top: 1rem;
+             padding-top: 1rem;
+             border-top: 1px dashed rgba(0,0,0,0.1);
+        }
+
+        .pinyin-line, .meaning-line {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        /* Default spacing when visible handled by margin on pinyin-line */
+        
+        /* VISIBILITY STATES */
+        
+        /* 1. Global Toggles (applied to reader-content or body) */
+        .show-pinyin-mode .pinyin-line {
+            max-height: 200px;
+            opacity: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .show-meaning-mode .meaning-line {
+            max-height: 200px;
+            opacity: 1;
+        }
+
+        /* 2. Interactive Reveal (Card Click) overrides hidden state */
+        .sentence-card.revealed .pinyin-line,
+        .sentence-card.revealed .meaning-line {
+            max-height: 200px;
+            opacity: 1;
+        }
+        
+        .sentence-card.revealed .pinyin-line {
+             margin-bottom: 0.5rem;
+        }
+        
+        /* If both global toggles are OFF, we need to hide the container border/spacing */
+        /* JS will toggle a class .has-visible-content on the card if pinyin OR meaning is visible */
+
+        /* Controls */
+        .reader-controls {
+            margin-bottom: 2rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap; /* allow wrapping on small screens */
+            background: var(--bg-light);
+            padding: 1rem;
+            border-radius: 8px;
+            align-items: center;
+        }
+
+        .reader-controls.sticky {
+            position: sticky;
+            top: 20px;
+            z-index: 100;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .control-btn {
+            background: var(--white);
+            border: 1px solid #ddd;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .control-btn.active {
+            background: var(--theme-primary);
+            color: var(--white);
+            border-color: var(--theme-primary);
+        }
+
+        @media (max-width: 900px) {
+            .reader-layout {
+                grid-template-columns: 1fr;
+            }
+            .chapter-sidebar {
+                position: static;
+                max-height: 300px;
+                margin-bottom: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="theme-switch-wrapper">
+        <div class="theme-group">
+            <div class="theme-btn" style="background-color: #d32f2f;" data-color="red" title="Red"></div>
+            <div class="theme-btn" style="background-color: #9c27b0;" data-color="purple" title="Purple"></div>
+            <div class="theme-btn" style="background-color: #1976d2;" data-color="blue" title="Blue"></div>
+            <div class="theme-btn" style="background-color: #388e3c;" data-color="green" title="Green"></div>
+            <div class="theme-btn" style="background-color: #607d8b;" data-color="white" title="Monochrome"></div>
+        </div>
+        <div class="theme-group">
+            <button class="mode-btn" data-mode="light">Light</button>
+            <button class="mode-btn" data-mode="dark">Dark</button>
+            <button class="mode-btn" data-mode="system">Auto</button>
+        </div>
+    </div>
+
+    <header class="hero" style="padding: 3rem 1rem; margin-bottom: 0;">
+        <div class="container">
+            <h1 id="book-title">HSK Standard Course</h1>
+            <p class="tagline">Interactive Reader</p>
+            <p>
+                <a href="index.html" style="color: var(--white); text-decoration: underline; margin-right: 15px;">&larr; Back to Home</a>
+                <a href="level.html?level=4" style="color: var(--white); text-decoration: underline;">&larr; Back to Vocabulary List</a>
+            </p>
+        </div>
+    </header>
+
+    <div class="reader-layout">
+        <aside class="chapter-sidebar">
+            <h3 style="margin-top:0; padding-bottom: 1rem; border-bottom: 1px solid #eee;">Chapters</h3>
+            <ul class="chapter-list" id="chapter-list">
+                <!-- Javascript will load chapters here -->
+                 <li style="padding: 20px; text-align: center; color: #999;">Loading...</li>
+            </ul>
+        </aside>
+
+        <main class="reader-content">
+            <div class="reader-controls sticky">
+                <span style="font-weight: bold; margin-right: 10px; color: var(--text-light);">Show:</span>
+                <button class="control-btn" id="btn-toggle-pinyin">Pinyin</button>
+                <button class="control-btn" id="btn-toggle-meaning">English</button>
+                <div style="flex-grow: 1;"></div>
+                <small style="color: var(--text-light);">*Click cards to reveal hidden info</small>
+            </div>
+            
+            <div id="text-display">
+                <div style="text-align: center; padding: 4rem; color: #999;">
+                    Select a chapter to begin reading.
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Reusing App Logic + New Reader Logic -->
+    <script src="reader.js"></script>
+</body>
+</html>

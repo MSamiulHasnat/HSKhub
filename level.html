@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HSK Vocabulary List</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="theme-switch-wrapper">
+        <!-- Color Picker -->
+        <div class="theme-group">
+            <div class="theme-btn" style="background-color: #d32f2f;" data-color="red" title="Red"></div>
+            <div class="theme-btn" style="background-color: #9c27b0;" data-color="purple" title="Purple"></div>
+            <div class="theme-btn" style="background-color: #1976d2;" data-color="blue" title="Blue"></div>
+            <div class="theme-btn" style="background-color: #388e3c;" data-color="green" title="Green"></div>
+            <div class="theme-btn" style="background-color: #607d8b;" data-color="white" title="Monochrome"></div>
+        </div>
+        <!-- Mode Picker -->
+        <div class="theme-group">
+            <button class="mode-btn" data-mode="light">Light</button>
+            <button class="mode-btn" data-mode="dark">Dark</button>
+            <button class="mode-btn" data-mode="system">Auto</button>
+        </div>
+    </div>
+
+    <header class="hero">
+        <div class="container">
+            <h1>HSK Level <span id="level-display"></span> Vocabulary</h1>
+            <p><a href="index.html" style="color: var(--white); text-decoration: underline;">&larr; Back to Home</a></p>
+        </div>
+    </header>
+
+    <main class="container">
+        <div id="error-message" style="color: red; text-align: center; display: none;"></div>
+        
+        <table id="vocab-table">
+            <thead>
+                <tr>
+                    <th style="width: 50px;">#</th>
+                    <th>Hanzi</th>
+                    <th>Pinyin</th>
+                    <th>Meaning</th>
+                    <th>Type</th>
+                    <th>Example</th>
+                </tr>
+            </thead>
+            <tbody id="vocab-body">
+                <!-- JavaScript will inject rows here -->
+            </tbody>
+        </table>
+    </main>
+
+    <!-- Scroll to Top Button -->
+    <button id="back-to-top" title="Go to top">↑</button>
+
+    <script src="app.js"></script>
+</body>
+</html>

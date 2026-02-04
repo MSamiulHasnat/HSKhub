@@ -1,0 +1,497 @@
+:root {
+    /* Base Variables (Light Mode Defaults) */
+    --accent-gold: #ffc107;
+    --text-dark: #333;
+    --text-light: #666;
+    --bg-light: #f8f9fa;
+    --white: #ffffff;
+    --shadow-sm: 0 4px 6px rgba(0,0,0,0.05);
+    --shadow-md: 0 10px 15px rgba(0,0,0,0.1);
+    
+    /* Default Color (Red) */
+    --theme-primary: #d32f2f;
+    --theme-primary-dark: #b71c1c;
+    --theme-bg-alpha: rgba(211, 47, 47, 0.1);
+
+    --font-ui: 'Poppins', 'Segoe UI', Tahoma, sans-serif;
+    --font-cn: 'Noto Sans SC', sans-serif;
+}
+
+/* --- Color Schemes --- */
+
+/* Red (Default) - Explicitly defined for consistency */
+[data-color="red"] {
+    --theme-primary: #d32f2f;
+    --theme-primary-dark: #b71c1c;
+    --theme-bg-alpha: rgba(211, 47, 47, 0.1);
+}
+
+/* Blue */
+[data-color="blue"] {
+    --theme-primary: #1976d2;
+    --theme-primary-dark: #0d47a1;
+    --theme-bg-alpha: rgba(25, 118, 210, 0.1);
+}
+
+/* Green */
+[data-color="green"] {
+    --theme-primary: #388e3c;
+    --theme-primary-dark: #1b5e20;
+    --theme-bg-alpha: rgba(56, 142, 60, 0.1);
+}
+
+/* Purple */
+[data-color="purple"] {
+    --theme-primary: #9c27b0;
+    --theme-primary-dark: #7b1fa2;
+    --theme-bg-alpha: rgba(156, 39, 176, 0.1);
+}
+
+/* White (Monochrome/Gray) */
+[data-color="white"] {
+    --theme-primary: #607d8b;
+    --theme-primary-dark: #455a64;
+    --theme-bg-alpha: rgba(96, 125, 139, 0.1);
+}
+
+/* --- Modes (Light / Dark) --- */
+
+/* Dark Mode Overrides */
+[data-mode="dark"] {
+    --bg-light: #121212;
+    --white: #1e1e1e;
+    --text-dark: #e0e0e0;
+    --text-light: #b0b0b0;
+    --shadow-sm: 0 4px 6px rgba(0,0,0,0.3);
+    --shadow-md: 0 10px 15px rgba(0,0,0,0.5);
+}
+
+/* Adjust primary colors for dark mode to ensure contrast if needed */
+/* For now, we will rely on the standard colors, but we can tweak them here like:
+[data-mode="dark"][data-color="blue"] { --theme-primary: #90caf9; } 
+*/
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-ui);
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Theme Selector */
+.theme-switch-wrapper {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+    display: flex;
+    flex-direction: column; /* Stack the two groups */
+    align-items: flex-end;
+    gap: 10px;
+}
+
+.theme-group {
+    display: flex;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 5px;
+    border-radius: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+[data-mode="dark"] .theme-group {
+    background: rgba(30, 30, 30, 0.8);
+}
+
+.theme-btn {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.mode-btn {
+    font-size: 12px;
+    padding: 2px 8px;
+    cursor: pointer;
+    border-radius: 12px;
+    border: 1px solid #ddd;
+    background: #fff;
+    color: #333;
+}
+
+.mode-btn.active {
+    background: #333;
+    color: #fff;
+    border-color: #333;
+}
+
+[data-mode="dark"] .mode-btn {
+    background: #333;
+    color: #ccc;
+    border-color: #555;
+}
+
+[data-mode="dark"] .mode-btn.active {
+    background: #f1f1f1;
+    color: #333;
+}
+
+.theme-btn:hover {
+    transform: scale(1.2);
+}
+
+.theme-btn.active {
+    border-color: var(--text-dark); /* Show active border based on mode */
+    transform: scale(1.2);
+    box-shadow: 0 0 0 2px var(--bg-light); /* Double ring effect */
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(135deg, var(--theme-primary) 0%, var(--theme-primary-dark) 100%);
+    color: var(--white); /* For dark mode, white text is usually fine on colored bg, but be careful */
+    padding: 5rem 1rem;
+    text-align: center;
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+    margin-bottom: 2rem;
+    transition: background 0.5s ease;
+}
+
+[data-theme="dark"] .hero {
+    /* Adjust hero for dark mode if needed, or keep colored gradient */
+    color: #121212; /* Dark text on light blue gradient looks better */
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    margin: 0 0 10px 0;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+.hero .tagline {
+    font-size: 1.5rem;
+    font-weight: 300;
+    margin-bottom: 1rem;
+    opacity: 0.9;
+}
+
+.hero-desc {
+    max-width: 600px;
+    margin: 0 auto;
+    opacity: 0.8;
+}
+
+/* Introduction */
+.intro {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.intro h2 {
+    font-size: 2rem;
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+}
+
+.intro p {
+    color: var(--text-light);
+}
+
+/* Grid Layout */
+.level-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    padding-bottom: 4rem;
+}
+
+/* Cards */
+.level-card {
+    background-color: var(--white);
+    border-radius: 16px;
+    padding: 2rem;
+    text-align: center;
+    text-decoration: none;
+    color: var(--text-dark);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s, color 0.3s;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.level-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-md);
+}
+
+.card-icon {
+    width: 60px;
+    height: 60px;
+    background-color: var(--theme-bg-alpha);
+    color: var(--theme-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.level-card:hover .card-icon {
+    background-color: var(--theme-primary);
+    color: var(--white);
+}
+[data-theme="dark"] .level-card:hover .card-icon {
+    color: #121212;
+}
+
+.level-card h3 {
+    margin: 0.5rem 0;
+    font-size: 1.5rem;
+}
+
+.level-card p {
+    color: var(--text-light);
+    margin: 0 0 1.5rem 0;
+}
+
+.card-link {
+    color: var(--theme-primary);
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-top: auto;
+}
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: #aaa;
+    text-align: center;
+    padding: 2rem 0;
+    font-size: 0.9rem;
+    margin-top: auto;
+}
+
+/* Previous Table Styles (Preserved) */
+table {
+    width: 100%; /* Changed to full width within container */
+    max-width: 100%;
+    margin: 2rem auto;
+    border-collapse: collapse;
+    background-color: var(--white);
+    color: var(--text-dark);
+    box-shadow: var(--shadow-md);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+thead {
+    background-color: var(--theme-primary);
+    color: var(--white);
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+th {
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+tbody tr:hover {
+    background-color: rgba(0,0,0,0.02);
+}
+
+tbody tr:last-of-type td {
+    border-bottom: 2px solid var(--theme-primary);
+}
+
+/* Responsive Table */
+@media (max-width: 600px) {
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    th, td {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Sentence Block Styles */
+.sentence-block {
+    min-width: 200px; /* Ensure column doesn't collapse too much */
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+.sentence-block .cn {
+    font-family: var(--font-cn);
+    font-size: 1.05rem;
+    color: var(--text-dark);
+    margin-bottom: 2px;
+}
+.sentence-block .py {
+    color: var(--theme-primary);
+    font-size: 0.85rem;
+    margin-bottom: 2px;
+}
+.sentence-block .en {
+    color: var(--text-light);
+    font-size: 0.85rem;
+    font-style: italic;
+}
+.hanzi-main {
+    font-family: var(--font-cn);
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+/* Chapter Header in Table */
+.chapter-header td {
+    background-color: var(--theme-bg-alpha);
+    color: var(--theme-primary-dark);
+    font-weight: 700;
+    text-align: center;
+    font-size: 1.1rem;
+    padding: 15px;
+    border-top: 2px solid var(--theme-primary);
+}
+
+/* Chapter Header Interactive */
+.chapter-header {
+    -webkit-user-select: none; /* Chrome/Safari/Opera */
+    -moz-user-select: none;    /* Firefox */
+    -ms-user-select: none;     /* Internet Explorer/Edge */
+    user-select: none;         /* Standard */
+}
+.chapter-header:hover {
+    filter: brightness(0.95);
+}
+.chapter-header.open {
+    border-bottom: 2px solid var(--theme-primary);
+}
+
+/* Back to Top Button (Webpage) */
+#back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    display: none; /* Hidden by default */
+    background-color: var(--theme-primary);
+    color: var(--white);
+    border: none;
+    outline: none;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    line-height: 50px; /* Center content vertically */
+    text-align: center; /* Center content horizontally */
+    padding: 0;
+    border-radius: 50%;
+    font-size: 24px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transition: background-color 0.3s, transform 0.3s;
+    z-index: 1000;
+}
+
+#back-to-top:hover {
+    background-color: var(--theme-primary-dark);
+    transform: translateY(-5px);
+}
+
+/* Chapter Footer (Scroll to Chapter Top) */
+.chapter-footer td {
+    text-align: center;
+    padding: 10px;
+    border-top: 1px dashed rgba(0,0,0,0.1);
+    background-color: rgba(0,0,0,0.01);
+}
+
+.chapter-top-btn {
+    background: none;
+    border: none;
+    color: var(--theme-primary);
+    cursor: pointer;
+    font-size: 0.9rem;
+    padding: 5px 15px;
+    border-radius: 20px;
+    border: 1px solid var(--theme-primary);
+    transition: all 0.2s;
+}
+
+.chapter-top-btn:hover {
+    background-color: var(--theme-primary);
+    color: var(--white);
+}
+
+
+/* Audio Highlight */
+.sentence-card.highlight-playing {
+    background-color: #fff9c4; /* Light Yellow */
+    border-color: var(--accent-gold);
+    box-shadow: 0 0 10px rgba(255, 193, 7, 0.3);
+    transform: scale(1.02);
+    transition: all 0.3s ease;
+}
+[data-theme='dark'] .sentence-card.highlight-playing {
+    background-color: rgba(255, 193, 7, 0.15);
+    border-color: var(--accent-gold);
+}
+
+/* Audio Button */
+.audio-btn {
+    background: none;
+    border: 2px solid var(--theme-primary);
+    color: var(--theme-primary);
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-left: 10px;
+    vertical-align: middle;
+    transition: all 0.2s;
+    font-size: 1rem;
+}
+
+.audio-btn:hover {
+    background-color: var(--theme-primary);
+    color: var(--white);
+    transform: scale(1.1);
+}
+
+.audio-btn.playing {
+    background-color: var(--theme-primary);
+    color: var(--white);
+    /* Simple Pulse Effect using box-shadow directly */
+    box-shadow: 0 0 0 3px rgba(0,0,0,0.1); 
+    border-color: transparent;
+}
+

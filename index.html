@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HSKHub - Master Chinese Vocabulary</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Optional: Add a Google Font for better typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+    <div class="theme-switch-wrapper">
+        <!-- Color Picker -->
+        <div class="theme-group">
+            <div class="theme-btn" style="background-color: #d32f2f;" data-color="red" title="Red"></div>
+            <div class="theme-btn" style="background-color: #9c27b0;" data-color="purple" title="Purple"></div>
+            <div class="theme-btn" style="background-color: #1976d2;" data-color="blue" title="Blue"></div>
+            <div class="theme-btn" style="background-color: #388e3c;" data-color="green" title="Green"></div>
+            <div class="theme-btn" style="background-color: #607d8b;" data-color="white" title="Monochrome"></div>
+        </div>
+        <!-- Mode Picker -->
+        <div class="theme-group">
+            <button class="mode-btn" data-mode="light">Light</button>
+            <button class="mode-btn" data-mode="dark">Dark</button>
+            <button class="mode-btn" data-mode="system">Auto</button>
+        </div>
+    </div>
+
+    <header class="hero">
+        <div class="container">
+            <h1>HSKHub</h1>
+            <p class="tagline">Your journey to Chinese fluency starts here.</p>
+            <p class="hero-desc">Access vocabulary lists for HSK levels 1 through 4. Simple, fast, and free.</p>
+        </div>
+    </header>
+
+    <main id="home" class="container">
+        <section class="intro">
+            <h2>Select Your Level</h2>
+            <p>Choose a level to start reviewing vocabulary.</p>
+        </section>
+        
+        <div class="level-grid">
+            <a href="level.html?level=1" class="level-card hsk1">
+                <div class="card-icon">1</div>
+                <h3>HSK Level 1</h3>
+                <p>150 Words</p>
+                <span class="card-link">Start Learning &rarr;</span>
+            </a>
+            
+            <a href="level.html?level=2" class="level-card hsk2">
+                <div class="card-icon">2</div>
+                <h3>HSK Level 2</h3>
+                <p>300 Words</p>
+                <span class="card-link">Start Learning &rarr;</span>
+            </a>
+            
+            <a href="level.html?level=3" class="level-card hsk3">
+                <div class="card-icon">3</div>
+                <h3>HSK Level 3</h3>
+                <p>600 Words</p>
+                <span class="card-link">Start Learning &rarr;</span>
+            </a>
+            
+            <a href="level.html?level=4" class="level-card hsk4">
+                <div class="card-icon">4</div>
+                <h3>HSK Level 4</h3>
+                <p>1200 Words</p>
+                <span class="card-link">Start Learning &rarr;</span>
+            </a>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 HSKHub. Built by Samiul for learning purposes.</p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>

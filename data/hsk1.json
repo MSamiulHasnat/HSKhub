@@ -1,0 +1,32 @@
+[
+  {
+    "hanzi": "爱",
+    "pinyin": "ài",
+    "meaning": "love",
+    "type": "verb"
+  },
+  {
+    "hanzi": "八",
+    "pinyin": "bā",
+    "meaning": "eight",
+    "type": "number"
+  },
+  {
+    "hanzi": "爸爸",
+    "pinyin": "bàba",
+    "meaning": "dad; father",
+    "type": "noun"
+  },
+  {
+    "hanzi": "杯子",
+    "pinyin": "bēizi",
+    "meaning": "cup; glass",
+    "type": "noun"
+  },
+  {
+    "hanzi": "北京",
+    "pinyin": "běijīng",
+    "meaning": "Beijing",
+    "type": "noun"
+  }
+]
