@@ -1088,6 +1088,119 @@
               "meaning": "low"
             }
           ]
+        },
+        "5": {
+          "title": "Lesson 5",
+          "words": [
+            {
+              "hanzi": "表扬",
+              "pinyin": "biǎoyáng",
+              "pos": "v./n.",
+              "meaning": "praise"
+            },
+            {
+              "hanzi": "厚",
+              "pinyin": "hòu",
+              "pos": "adj.",
+              "meaning": "thick"
+            },
+            {
+              "hanzi": "提前",
+              "pinyin": "tíqián",
+              "pos": "v.",
+              "meaning": "move up, do sth. in advance"
+            },
+            {
+              "hanzi": "醒",
+              "pinyin": "xǐng",
+              "pos": "v.",
+              "meaning": "wake; wake up"
+            },
+            {
+              "hanzi": "师傅",
+              "pinyin": "shīfu",
+              "pos": "n.",
+              "meaning": "used to address strangers in everyday life, similar to \"mister\" or \"sir\""
+            },
+            {
+              "hanzi": "凉快",
+              "pinyin": "liángkuai",
+              "pos": "adj.",
+              "meaning": "pleasantly cool (weather)"
+            },
+            {
+              "hanzi": "网站",
+              "pinyin": "wǎngzhàn",
+              "pos": "n.",
+              "meaning": "website"
+            },
+            {
+              "hanzi": "粗心",
+              "pinyin": "cūxīn",
+              "pos": "adj.",
+              "meaning": "careless, thoughtless"
+            },
+            {
+              "hanzi": "公里",
+              "pinyin": "gōnglǐ",
+              "pos": "measure word",
+              "meaning": "kilometer"
+            },
+            {
+              "hanzi": "怀疑",
+              "pinyin": "huáiyí",
+              "pos": "v.",
+              "meaning": "doubt, suspect"
+            },
+            {
+              "hanzi": "座",
+              "pinyin": "zuò",
+              "pos": "measure word",
+              "meaning": "measure word for bridges, buildings etc."
+            },
+            {
+              "hanzi": "节约",
+              "pinyin": "jiéyuē",
+              "pos": "v.",
+              "meaning": "save, frugal"
+            },
+            {
+              "hanzi": "航班",
+              "pinyin": "hángbān",
+              "pos": "n.",
+              "meaning": "flight"
+            },
+            {
+              "hanzi": "负责",
+              "pinyin": "fùzé",
+              "pos": "v.",
+              "meaning": "be in charge of, be responsible for"
+            },
+            {
+              "hanzi": "价格",
+              "pinyin": "jiàgé",
+              "pos": "n.",
+              "meaning": "price"
+            },
+            {
+              "hanzi": "尊重",
+              "pinyin": "zūnzhòng",
+              "pos": "v./n.",
+              "meaning": "respect, value"
+            },
+            {
+              "hanzi": "竞争",
+              "pinyin": "jìngzhēng",
+              "pos": "v.",
+              "meaning": "compete, contend"
+            },
+            {
+              "hanzi": "赢",
+              "pinyin": "yíng",
+              "pos": "v.",
+              "meaning": "win"
+            }
+          ]
         }
       }
     }
