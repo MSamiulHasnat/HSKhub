@@ -115,9 +115,7 @@ function initColumnToggles() {
         th.style.cursor = 'pointer';
         th.style.userSelect = 'none';
         
-        // Add hover effect via JS or assume CSS handles it
-        th.onmouseover = () => th.style.backgroundColor = 'var(--theme-bg-alpha)';
-        th.onmouseout = () => th.style.backgroundColor = '';
+        // Hover effect is now handled in CSS to prevent sticky header transparency issues
     });
 }
 
