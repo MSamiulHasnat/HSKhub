@@ -1,0 +1,1095 @@
+{
+  "info": {
+    "level": "HSK 4",
+    "source": "SuperTest Wordlist HSK4",
+    "description": "Vocabulary list parsed from heda-supertest.html"
+  },
+  "units": {
+    "1": {
+      "title": "Unit 1",
+      "lessons": {
+        "1": {
+          "title": "Lesson 1",
+          "words": [
+            {
+              "hanzi": "交流",
+              "pinyin": "jiāoliú",
+              "pos": "v.",
+              "meaning": "exchange; interflow; communicate"
+            },
+            {
+              "hanzi": "深",
+              "pinyin": "shēn",
+              "pos": "adj.",
+              "meaning": "deep"
+            },
+            {
+              "hanzi": "印象",
+              "pinyin": "yìnxiàng",
+              "pos": "n.",
+              "meaning": "impression; effect; feeling"
+            },
+            {
+              "hanzi": "熟悉",
+              "pinyin": "shúxī",
+              "pos": "v.",
+              "meaning": "know well, be familiar with"
+            },
+            {
+              "hanzi": "敲",
+              "pinyin": "qiāo",
+              "pos": "v.",
+              "meaning": "knock, beat, strike"
+            },
+            {
+              "hanzi": "仍然",
+              "pinyin": "réngrán",
+              "pos": "adv.",
+              "meaning": "still, yet"
+            },
+            {
+              "hanzi": "占线",
+              "pinyin": "zhànxiàn",
+              "pos": "v.",
+              "meaning": "the line (of a telephone) is busy"
+            },
+            {
+              "hanzi": "约会",
+              "pinyin": "yuēhuì",
+              "pos": "v./n.",
+              "meaning": "date, have a meeting, appointment"
+            },
+            {
+              "hanzi": "遍",
+              "pinyin": "biàn",
+              "pos": "measure word",
+              "meaning": "measure word for number of times"
+            },
+            {
+              "hanzi": "日记",
+              "pinyin": "rìjì",
+              "pos": "n.",
+              "meaning": "diary, journal"
+            },
+            {
+              "hanzi": "邀请",
+              "pinyin": "yāoqǐng",
+              "pos": "v.",
+              "meaning": "invite;invitation"
+            },
+            {
+              "hanzi": "缺少",
+              "pinyin": "quēshǎo",
+              "pos": "v.",
+              "meaning": "lack, be short of"
+            },
+            {
+              "hanzi": "安排",
+              "pinyin": "ānpái",
+              "pos": "v./n.",
+              "meaning": "plan, arrangement, arrange"
+            },
+            {
+              "hanzi": "烦恼",
+              "pinyin": "fánnǎo",
+              "pos": "adj.",
+              "meaning": "worried, bother, annoyed"
+            },
+            {
+              "hanzi": "打印",
+              "pinyin": "dǎyìn",
+              "pos": "v.",
+              "meaning": "print"
+            },
+            {
+              "hanzi": "场",
+              "pinyin": "chǎng",
+              "pos": "measure word",
+              "meaning": "measure word for recreational or sports activities"
+            },
+            {
+              "hanzi": "复印",
+              "pinyin": "fùyìn",
+              "pos": "v.",
+              "meaning": "copy"
+            }
+          ]
+        },
+        "2": {
+          "title": "Lesson 2",
+          "words": [
+            {
+              "hanzi": "尽管",
+              "pinyin": "jǐnguǎn",
+              "pos": "conj.",
+              "meaning": "although, even though"
+            },
+            {
+              "hanzi": "判断",
+              "pinyin": "pànduàn",
+              "pos": "v.",
+              "meaning": "judge"
+            },
+            {
+              "hanzi": "否则",
+              "pinyin": "fǒuzé",
+              "pos": "conj.",
+              "meaning": "otherwise"
+            },
+            {
+              "hanzi": "后悔",
+              "pinyin": "hòuhuǐ",
+              "pos": "v.",
+              "meaning": "regret, repent"
+            },
+            {
+              "hanzi": "无论",
+              "pinyin": "wúlùn",
+              "pos": "conj.",
+              "meaning": "no matter what, how, etc.; regardless of"
+            },
+            {
+              "hanzi": "商量",
+              "pinyin": "shāngliang",
+              "pos": "v.",
+              "meaning": "discuss, talk over"
+            },
+            {
+              "hanzi": "减肥",
+              "pinyin": "jiǎnféi",
+              "pos": "v.",
+              "meaning": "lose weight"
+            },
+            {
+              "hanzi": "随着",
+              "pinyin": "suízhe",
+              "pos": "prep.",
+              "meaning": "along with, following"
+            },
+            {
+              "hanzi": "苦",
+              "pinyin": "kǔ",
+              "pos": "adj.",
+              "meaning": "bitter"
+            },
+            {
+              "hanzi": "比如",
+              "pinyin": "bǐrú",
+              "pos": "v.",
+              "meaning": "for example, such as"
+            },
+            {
+              "hanzi": "辣",
+              "pinyin": "là",
+              "pos": "adj.",
+              "meaning": "spicy, hot (taste)"
+            },
+            {
+              "hanzi": "迷路",
+              "pinyin": "mílù",
+              "pos": "v.",
+              "meaning": "to get lost"
+            },
+            {
+              "hanzi": "积累",
+              "pinyin": "jīlěi",
+              "pos": "v.",
+              "meaning": "accumulate"
+            },
+            {
+              "hanzi": "获得",
+              "pinyin": "huòdé",
+              "pos": "v.",
+              "meaning": "get; obtain"
+            },
+            {
+              "hanzi": "道歉",
+              "pinyin": "dàoqiàn",
+              "pos": "v.",
+              "meaning": "apologize"
+            },
+            {
+              "hanzi": "原谅",
+              "pinyin": "yuánliàng",
+              "pos": "v.",
+              "meaning": "forgive, excuse"
+            },
+            {
+              "hanzi": "提醒",
+              "pinyin": "tíxǐng",
+              "pos": "v.",
+              "meaning": "remind, warn"
+            }
+          ]
+        },
+        "3": {
+          "title": "Lesson 3",
+          "words": [
+            {
+              "hanzi": "危险",
+              "pinyin": "wēixiǎn",
+              "pos": "adj.",
+              "meaning": "dangerous"
+            },
+            {
+              "hanzi": "流行",
+              "pinyin": "liúxíng",
+              "pos": "v./adj.",
+              "meaning": "popular; fashionable"
+            },
+            {
+              "hanzi": "之",
+              "pinyin": "zhī",
+              "pos": "aux",
+              "meaning": "auxiliary (used between an attribute and the word it modifies)"
+            },
+            {
+              "hanzi": "联系",
+              "pinyin": "liánxì",
+              "pos": "v.",
+              "meaning": "contact, connect"
+            },
+            {
+              "hanzi": "放弃",
+              "pinyin": "fàngqì",
+              "pos": "v.",
+              "meaning": "give up"
+            },
+            {
+              "hanzi": "份",
+              "pinyin": "fèn",
+              "pos": "measure word",
+              "meaning": "portion;a set of (measure word)"
+            },
+            {
+              "hanzi": "拒绝",
+              "pinyin": "jùjué",
+              "pos": "v.",
+              "meaning": "decline, reject"
+            },
+            {
+              "hanzi": "要是",
+              "pinyin": "yàoshi",
+              "pos": "conj.",
+              "meaning": "if, in case of"
+            },
+            {
+              "hanzi": "普通话",
+              "pinyin": "pǔtōnghuà",
+              "pos": "n.",
+              "meaning": "Standard Chinese"
+            },
+            {
+              "hanzi": "堵车",
+              "pinyin": "dǔchē",
+              "pos": "v.",
+              "meaning": "traffic jam"
+            },
+            {
+              "hanzi": "演出",
+              "pinyin": "yǎnchū",
+              "pos": "v./n.",
+              "meaning": "performance, show, perform"
+            },
+            {
+              "hanzi": "大概",
+              "pinyin": "dàgài",
+              "pos": "adv.",
+              "meaning": "around, roughly, probably"
+            },
+            {
+              "hanzi": "年龄",
+              "pinyin": "niánlíng",
+              "pos": "n.",
+              "meaning": "age"
+            },
+            {
+              "hanzi": "刚",
+              "pinyin": "gāng",
+              "pos": "adv.",
+              "meaning": "just, barely, a while ago"
+            },
+            {
+              "hanzi": "过程",
+              "pinyin": "guòchéng",
+              "pos": "n.",
+              "meaning": "process, course"
+            },
+            {
+              "hanzi": "广告",
+              "pinyin": "guǎnggào",
+              "pos": "n.",
+              "meaning": "advertisement"
+            },
+            {
+              "hanzi": "辛苦",
+              "pinyin": "xīnkǔ",
+              "pos": "v./adj.",
+              "meaning": "go through great trouble, hard, difficult, laborious"
+            }
+          ]
+        },
+        "4": {
+          "title": "Lesson 4",
+          "words": [
+            {
+              "hanzi": "动作",
+              "pinyin": "dòngzuò",
+              "pos": "n.",
+              "meaning": "movement, action"
+            },
+            {
+              "hanzi": "有趣",
+              "pinyin": "yǒuqù",
+              "pos": "adj.",
+              "meaning": "interesting"
+            },
+            {
+              "hanzi": "内",
+              "pinyin": "nèi",
+              "pos": "n.",
+              "meaning": "inner; inside"
+            },
+            {
+              "hanzi": "消息",
+              "pinyin": "xiāoxi",
+              "pos": "n.",
+              "meaning": "news; message"
+            },
+            {
+              "hanzi": "稍微",
+              "pinyin": "shāowēi",
+              "pos": "adv.",
+              "meaning": "a little, bit, slightly"
+            },
+            {
+              "hanzi": "巧克力",
+              "pinyin": "qiǎokèlì",
+              "pos": "n.",
+              "meaning": "chocolate"
+            },
+            {
+              "hanzi": "紧张",
+              "pinyin": "jǐnzhāng",
+              "pos": "adj.",
+              "meaning": "nervous; tense; tight"
+            },
+            {
+              "hanzi": "生活",
+              "pinyin": "shēnghuó",
+              "pos": "v./n.",
+              "meaning": "life"
+            },
+            {
+              "hanzi": "降落",
+              "pinyin": "jiàngluò",
+              "pos": "v.",
+              "meaning": "to land"
+            },
+            {
+              "hanzi": "镜子",
+              "pinyin": "jìngzi",
+              "pos": "n.",
+              "meaning": "mirror"
+            },
+            {
+              "hanzi": "出发",
+              "pinyin": "chūfā",
+              "pos": "v.",
+              "meaning": "set off, start (a journey)"
+            },
+            {
+              "hanzi": "原因",
+              "pinyin": "yuányīn",
+              "pos": "n.",
+              "meaning": "reason, cause"
+            },
+            {
+              "hanzi": "由",
+              "pinyin": "yóu",
+              "pos": "prep.",
+              "meaning": "from, by"
+            },
+            {
+              "hanzi": "塑料袋",
+              "pinyin": "sùliàodài",
+              "pos": "n.",
+              "meaning": "plastic bag"
+            },
+            {
+              "hanzi": "植物",
+              "pinyin": "zhíwù",
+              "pos": "n.",
+              "meaning": "plant"
+            },
+            {
+              "hanzi": "阳光",
+              "pinyin": "yángguāng",
+              "pos": "n.",
+              "meaning": "sunshine, sunlight"
+            },
+            {
+              "hanzi": "温度",
+              "pinyin": "wēndù",
+              "pos": "n.",
+              "meaning": "temperature"
+            }
+          ]
+        },
+        "5": {
+          "title": "Lesson 5",
+          "words": [
+            {
+              "hanzi": "信息",
+              "pinyin": "xìnxī",
+              "pos": "n.",
+              "meaning": "information"
+            },
+            {
+              "hanzi": "情况",
+              "pinyin": "qíngkuàng",
+              "pos": "n.",
+              "meaning": "circumstance, situation"
+            },
+            {
+              "hanzi": "任何",
+              "pinyin": "rènhé",
+              "pos": "pron.",
+              "meaning": "any; whichever; whatever"
+            },
+            {
+              "hanzi": "打扰",
+              "pinyin": "dǎrǎo",
+              "pos": "v.",
+              "meaning": "bother, interrupt"
+            },
+            {
+              "hanzi": "只要",
+              "pinyin": "zhǐyào",
+              "pos": "conj.",
+              "meaning": "as long as"
+            },
+            {
+              "hanzi": "理想",
+              "pinyin": "lǐxiǎng",
+              "pos": "n.",
+              "meaning": "dream; aspiration; ideal"
+            },
+            {
+              "hanzi": "来得及",
+              "pinyin": "láidejí",
+              "pos": "v.",
+              "meaning": "have enough time (to do sth)"
+            },
+            {
+              "hanzi": "密码",
+              "pinyin": "mìmǎ",
+              "pos": "n.",
+              "meaning": "password"
+            },
+            {
+              "hanzi": "页",
+              "pinyin": "yè",
+              "pos": "n.",
+              "meaning": "page; sheet"
+            },
+            {
+              "hanzi": "勇敢",
+              "pinyin": "yǒnggǎn",
+              "pos": "adj.",
+              "meaning": "brave, courageous"
+            },
+            {
+              "hanzi": "笑话",
+              "pinyin": "xiàohua",
+              "pos": "n.",
+              "meaning": "joke"
+            },
+            {
+              "hanzi": "关键",
+              "pinyin": "guānjiàn",
+              "pos": "n.",
+              "meaning": "key, crucial"
+            },
+            {
+              "hanzi": "压力",
+              "pinyin": "yālì",
+              "pos": "n.",
+              "meaning": "pressure"
+            },
+            {
+              "hanzi": "文章",
+              "pinyin": "wénzhāng",
+              "pos": "n.",
+              "meaning": "essay, article"
+            },
+            {
+              "hanzi": "能力",
+              "pinyin": "nénglì",
+              "pos": "n.",
+              "meaning": "ability; capacity; capability"
+            },
+            {
+              "hanzi": "阅读",
+              "pinyin": "yuèdú",
+              "pos": "v./n.",
+              "meaning": "reading ability, read"
+            },
+            {
+              "hanzi": "丰富",
+              "pinyin": "fēngfù",
+              "pos": "adj.",
+              "meaning": "abundant, rich, plentiful"
+            }
+          ]
+        },
+        "6": {
+          "title": "Lesson 6",
+          "words": [
+            {
+              "hanzi": "重视",
+              "pinyin": "zhòngshì",
+              "pos": "v./n.",
+              "meaning": "attach importance to, value"
+            },
+            {
+              "hanzi": "鼓励",
+              "pinyin": "gǔlì",
+              "pos": "v./n.",
+              "meaning": "inspire, encourage"
+            },
+            {
+              "hanzi": "专业",
+              "pinyin": "zhuānyè",
+              "pos": "n./adj.",
+              "meaning": "field of study, specialty"
+            },
+            {
+              "hanzi": "成功",
+              "pinyin": "chénggōng",
+              "pos": "v./adj.",
+              "meaning": "succeed"
+            },
+            {
+              "hanzi": "继续",
+              "pinyin": "jìxù",
+              "pos": "v.",
+              "meaning": "continue, proceed"
+            },
+            {
+              "hanzi": "毕业",
+              "pinyin": "bìyè",
+              "pos": "v.",
+              "meaning": "graduate"
+            },
+            {
+              "hanzi": "由于",
+              "pinyin": "yóuyú",
+              "pos": "prep.",
+              "meaning": "owing to, as a result of, due to"
+            },
+            {
+              "hanzi": "语言",
+              "pinyin": "yǔyán",
+              "pos": "n.",
+              "meaning": "language"
+            },
+            {
+              "hanzi": "条件",
+              "pinyin": "tiáojiàn",
+              "pos": "n.",
+              "meaning": "condition, terms, requirements"
+            },
+            {
+              "hanzi": "法律",
+              "pinyin": "fǎlǜ",
+              "pos": "n.",
+              "meaning": "law"
+            },
+            {
+              "hanzi": "不过",
+              "pinyin": "búguò",
+              "pos": "conj.",
+              "meaning": "but, however"
+            },
+            {
+              "hanzi": "任务",
+              "pinyin": "rènwu",
+              "pos": "n.",
+              "meaning": "task, assignment, mission"
+            },
+            {
+              "hanzi": "各",
+              "pinyin": "gè",
+              "pos": "pron.",
+              "meaning": "each, every"
+            },
+            {
+              "hanzi": "沙发",
+              "pinyin": "shāfā",
+              "pos": "n.",
+              "meaning": "sofa, couch"
+            },
+            {
+              "hanzi": "支持",
+              "pinyin": "zhīchí",
+              "pos": "v./n.",
+              "meaning": "assist, support, back up"
+            },
+            {
+              "hanzi": "收",
+              "pinyin": "shōu",
+              "pos": "v.",
+              "meaning": "receive; accept"
+            },
+            {
+              "hanzi": "知识",
+              "pinyin": "zhīshi",
+              "pos": "n.",
+              "meaning": "knowledge"
+            }
+          ]
+        }
+      }
+    },
+    "2": {
+      "title": "Unit 2",
+      "lessons": {
+        "1": {
+          "title": "Lesson 1",
+          "words": [
+            {
+              "hanzi": "擦",
+              "pinyin": "cā",
+              "pos": "v.",
+              "meaning": "wipe clean"
+            },
+            {
+              "hanzi": "导游",
+              "pinyin": "dǎoyóu",
+              "pos": "n.",
+              "meaning": "tour guide"
+            },
+            {
+              "hanzi": "汤",
+              "pinyin": "tāng",
+              "pos": "n.",
+              "meaning": "soup"
+            },
+            {
+              "hanzi": "应聘",
+              "pinyin": "yìngpìn",
+              "pos": "v.",
+              "meaning": "apply for a job"
+            },
+            {
+              "hanzi": "西红柿",
+              "pinyin": "xīhóngshì",
+              "pos": "n.",
+              "meaning": "tomato"
+            },
+            {
+              "hanzi": "缺点",
+              "pinyin": "quēdiǎn",
+              "pos": "n.",
+              "meaning": "fault, shortcoming"
+            },
+            {
+              "hanzi": "逛",
+              "pinyin": "guàng",
+              "pos": "v.",
+              "meaning": "stroll"
+            },
+            {
+              "hanzi": "加班",
+              "pinyin": "jiābān",
+              "pos": "v.",
+              "meaning": "work overtime"
+            },
+            {
+              "hanzi": "以",
+              "pinyin": "yǐ",
+              "pos": "prep.",
+              "meaning": "using, taking, by means of"
+            },
+            {
+              "hanzi": "售货员",
+              "pinyin": "shòuhuòyuán",
+              "pos": "n.",
+              "meaning": "shop assistant, salesclerk"
+            },
+            {
+              "hanzi": "羡慕",
+              "pinyin": "xiànmù",
+              "pos": "v.",
+              "meaning": "admire, envy"
+            },
+            {
+              "hanzi": "标准",
+              "pinyin": "biāozhǔn",
+              "pos": "n.",
+              "meaning": "standard"
+            },
+            {
+              "hanzi": "基础",
+              "pinyin": "jīchǔ",
+              "pos": "n.",
+              "meaning": "foundation, basis"
+            },
+            {
+              "hanzi": "方面",
+              "pinyin": "fāngmiàn",
+              "pos": "n.",
+              "meaning": "aspect, side"
+            },
+            {
+              "hanzi": "使",
+              "pinyin": "shǐ",
+              "pos": "v.",
+              "meaning": "make, cause, enable"
+            },
+            {
+              "hanzi": "美丽",
+              "pinyin": "měilì",
+              "pos": "adj.",
+              "meaning": "beautiful"
+            },
+            {
+              "hanzi": "耐心",
+              "pinyin": "nàixīn",
+              "pos": "adj.",
+              "meaning": "patient"
+            }
+          ]
+        },
+        "2": {
+          "title": "Lesson 2",
+          "words": [
+            {
+              "hanzi": "诚实",
+              "pinyin": "chéngshí",
+              "pos": "adj.",
+              "meaning": "honest"
+            },
+            {
+              "hanzi": "误会",
+              "pinyin": "wùhuì",
+              "pos": "v./n.",
+              "meaning": "misunderstanding, misunderstand"
+            },
+            {
+              "hanzi": "优秀",
+              "pinyin": "yōuxiù",
+              "pos": "adj.",
+              "meaning": "outstanding, great"
+            },
+            {
+              "hanzi": "性格",
+              "pinyin": "xìnggé",
+              "pos": "n.",
+              "meaning": "character, temperament"
+            },
+            {
+              "hanzi": "感觉",
+              "pinyin": "gǎnjué",
+              "pos": "v./n.",
+              "meaning": "feeling, sensation"
+            },
+            {
+              "hanzi": "往往",
+              "pinyin": "wǎngwǎng",
+              "pos": "adv.",
+              "meaning": "often, usually"
+            },
+            {
+              "hanzi": "取",
+              "pinyin": "qǔ",
+              "pos": "v.",
+              "meaning": "take, get"
+            },
+            {
+              "hanzi": "坚持",
+              "pinyin": "jiānchí",
+              "pos": "v.",
+              "meaning": "insist on, persist in, keep up"
+            },
+            {
+              "hanzi": "扔",
+              "pinyin": "rēng",
+              "pos": "v.",
+              "meaning": "throw away; cast aside"
+            },
+            {
+              "hanzi": "盐",
+              "pinyin": "yán",
+              "pos": "n.",
+              "meaning": "salt"
+            },
+            {
+              "hanzi": "使用",
+              "pinyin": "shǐyòng",
+              "pos": "v.",
+              "meaning": "use"
+            },
+            {
+              "hanzi": "保证",
+              "pinyin": "bǎozhèng",
+              "pos": "v.",
+              "meaning": "guarantee, assure"
+            },
+            {
+              "hanzi": "教育",
+              "pinyin": "jiàoyù",
+              "pos": "v./n.",
+              "meaning": "educate, education"
+            },
+            {
+              "hanzi": "挺",
+              "pinyin": "tǐng",
+              "pos": "adv.",
+              "meaning": "very, rather, quite"
+            },
+            {
+              "hanzi": "通知",
+              "pinyin": "tōngzhī",
+              "pos": "v./n.",
+              "meaning": "inform, notify, notification, notice"
+            },
+            {
+              "hanzi": "适合",
+              "pinyin": "shìhé",
+              "pos": "v.",
+              "meaning": "suit, fit, be appropriate for"
+            },
+            {
+              "hanzi": "解释",
+              "pinyin": "jiěshì",
+              "pos": "v.",
+              "meaning": "explain"
+            }
+          ]
+        },
+        "3": {
+          "title": "Lesson 3",
+          "words": [
+            {
+              "hanzi": "失败",
+              "pinyin": "shībài",
+              "pos": "v./n.",
+              "meaning": "lose, be defeated"
+            },
+            {
+              "hanzi": "幸福",
+              "pinyin": "xìngfú",
+              "pos": "n./adj.",
+              "meaning": "happiness, happy"
+            },
+            {
+              "hanzi": "活动",
+              "pinyin": "huódòng",
+              "pos": "v./n.",
+              "meaning": "exercise, promote, activity, event, promotion"
+            },
+            {
+              "hanzi": "即使",
+              "pinyin": "jíshǐ",
+              "pos": "conj.",
+              "meaning": "even if"
+            },
+            {
+              "hanzi": "材料",
+              "pinyin": "cáiliào",
+              "pos": "n.",
+              "meaning": "material"
+            },
+            {
+              "hanzi": "浪费",
+              "pinyin": "làngfèi",
+              "pos": "v.",
+              "meaning": "squander; waste"
+            },
+            {
+              "hanzi": "肚子",
+              "pinyin": "dùzi",
+              "pos": "n.",
+              "meaning": "stomach"
+            },
+            {
+              "hanzi": "重新",
+              "pinyin": "chóngxīn",
+              "pos": "adv.",
+              "meaning": "once again"
+            },
+            {
+              "hanzi": "窗户",
+              "pinyin": "chuānghu",
+              "pos": "n.",
+              "meaning": "window"
+            },
+            {
+              "hanzi": "管理",
+              "pinyin": "guǎnlǐ",
+              "pos": "v.",
+              "meaning": "manage;management"
+            },
+            {
+              "hanzi": "租",
+              "pinyin": "zū",
+              "pos": "v.",
+              "meaning": "rent"
+            },
+            {
+              "hanzi": "详细",
+              "pinyin": "xiángxì",
+              "pos": "adj.",
+              "meaning": "detailed"
+            },
+            {
+              "hanzi": "考虑",
+              "pinyin": "kǎolǜ",
+              "pos": "v.",
+              "meaning": "think over, consider"
+            },
+            {
+              "hanzi": "饼干",
+              "pinyin": "bǐnggān",
+              "pos": "n.",
+              "meaning": "cookie, biscuit"
+            },
+            {
+              "hanzi": "心情",
+              "pinyin": "xīnqíng",
+              "pos": "n.",
+              "meaning": "mood"
+            },
+            {
+              "hanzi": "发展",
+              "pinyin": "fāzhǎn",
+              "pos": "v./n.",
+              "meaning": "develop"
+            },
+            {
+              "hanzi": "方法",
+              "pinyin": "fāngfǎ",
+              "pos": "n.",
+              "meaning": "method, way, manner"
+            }
+          ]
+        },
+        "4": {
+          "title": "Lesson 4",
+          "words": [
+            {
+              "hanzi": "加油站",
+              "pinyin": "jiāyóuzhàn",
+              "pos": "n.",
+              "meaning": "gas station"
+            },
+            {
+              "hanzi": "假",
+              "pinyin": "jiǎ",
+              "pos": "adj.",
+              "meaning": "fake; false"
+            },
+            {
+              "hanzi": "计划",
+              "pinyin": "jìhuà",
+              "pos": "v./n.",
+              "meaning": "plan, scheme"
+            },
+            {
+              "hanzi": "感谢",
+              "pinyin": "gǎnxiè",
+              "pos": "v.",
+              "meaning": "(to express) thanks, thankful"
+            },
+            {
+              "hanzi": "谈",
+              "pinyin": "tán",
+              "pos": "v.",
+              "meaning": "chat, discuss"
+            },
+            {
+              "hanzi": "祝贺",
+              "pinyin": "zhùhè",
+              "pos": "v.",
+              "meaning": "celebrate; congratulate"
+            },
+            {
+              "hanzi": "免费",
+              "pinyin": "miǎnfèi",
+              "pos": "v./adj.",
+              "meaning": "free"
+            },
+            {
+              "hanzi": "邮局",
+              "pinyin": "yóujú",
+              "pos": "",
+              "meaning": "post office"
+            },
+            {
+              "hanzi": "干杯",
+              "pinyin": "gānbēi",
+              "pos": "v.",
+              "meaning": "cheers"
+            },
+            {
+              "hanzi": "牙膏",
+              "pinyin": "yágāo",
+              "pos": "n.",
+              "meaning": "toothpaste"
+            },
+            {
+              "hanzi": "刀",
+              "pinyin": "dāo",
+              "pos": "n.",
+              "meaning": "knife"
+            },
+            {
+              "hanzi": "毛巾",
+              "pinyin": "máojīn",
+              "pos": "n.",
+              "meaning": "towel"
+            },
+            {
+              "hanzi": "得",
+              "pinyin": "děi",
+              "pos": "v.",
+              "meaning": "need,must"
+            },
+            {
+              "hanzi": "钥匙",
+              "pinyin": "yàoshi",
+              "pos": "n.",
+              "meaning": "key"
+            },
+            {
+              "hanzi": "咱们",
+              "pinyin": "zánmen",
+              "pos": "pron.",
+              "meaning": "we or us"
+            },
+            {
+              "hanzi": "盒子",
+              "pinyin": "hézi",
+              "pos": "n.",
+              "meaning": "box"
+            },
+            {
+              "hanzi": "肯定",
+              "pinyin": "kěndìng",
+              "pos": "adv./adj.",
+              "meaning": "definitely, sure, positive, certain"
+            },
+            {
+              "hanzi": "低",
+              "pinyin": "dī",
+              "pos": "adj.",
+              "meaning": "low"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

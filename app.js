@@ -90,6 +90,37 @@ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e =
 // Initialize theme immediately
 initTheme();
 
+// Initialize Column Toggles
+function initColumnToggles() {
+    document.querySelectorAll('.toggle-header').forEach(th => {
+        th.addEventListener('click', () => {
+            const col = th.getAttribute('data-col');
+            const table = document.getElementById('vocab-table');
+            const icon = th.querySelector('.toggle-icon');
+            
+            // Toggle class on table
+            table.classList.toggle(`hide-${col}`);
+            
+            // Update Icon
+            if (table.classList.contains(`hide-${col}`)) {
+                th.style.opacity = '0.7';
+                icon.textContent = '🔒'; // Or closed eye
+            } else {
+                th.style.opacity = '1';
+                icon.textContent = '👁️';
+            }
+        });
+        
+        // Add cursor pointer style
+        th.style.cursor = 'pointer';
+        th.style.userSelect = 'none';
+        
+        // Add hover effect via JS or assume CSS handles it
+        th.onmouseover = () => th.style.backgroundColor = 'var(--theme-bg-alpha)';
+        th.onmouseout = () => th.style.backgroundColor = '';
+    });
+}
+
 // 1. Detect which page we are on and get query parameters
 const urlParams = new URLSearchParams(window.location.search);
 const level = urlParams.get('level');
@@ -97,6 +128,7 @@ const level = urlParams.get('level');
 // 2. If we have a level parameter, we are on the level.html page
 if (level) {
     console.log(`Loading data for HSK Level ${level}...`);
+    initColumnToggles(); // Initialize the column toggles
     initLevelPage(level);
 }
 
@@ -107,15 +139,117 @@ function initLevelPage(level) {
         levelDisplay.textContent = level;
     }
 
-    // Inject "Read Book" button for HSK 4
+    // Inject specific controls for HSK 4
     if (level === '4') {
         const heroContainer = document.querySelector('.hero .container');
         if (heroContainer) {
+            // --- 1. Wordlist Source Switcher ---
+            
+            // Container
+            const switchContainer = document.createElement('div');
+            switchContainer.style.marginTop = '1rem';
+            switchContainer.style.display = 'flex';
+            switchContainer.style.justifyContent = 'center';
+            switchContainer.style.gap = '10px';
+            switchContainer.style.marginBottom = '1rem';
+            
+            // CSS for switcher
+            const style = document.createElement('style');
+            style.textContent = `
+                .source-btn {
+                    background: rgba(255,255,255,0.25);
+                    border: 1px solid rgba(255,255,255,0.5);
+                    color: var(--white);
+                    padding: 8px 16px;
+                    border-radius: 20px;
+                    cursor: pointer;
+                    font-family: inherit;
+                    font-weight: 500;
+                    transition: all 0.2s;
+                }
+                .source-btn:hover {
+                    background: rgba(255,255,255,0.4);
+                }
+                .source-btn.active {
+                    background: var(--white);
+                    color: var(--theme-primary);
+                    font-weight: 700;
+                    border-color: var(--white);
+                    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                }
+            `;
+            document.head.appendChild(style);
+
+            // Buttons
+            const btnStandard = document.createElement('button');
+            btnStandard.textContent = 'Standard Course';
+            btnStandard.className = 'source-btn active';
+            
+            const btnSupertest = document.createElement('button');
+            btnSupertest.textContent = 'SuperTest Version';
+            btnSupertest.className = 'source-btn';
+
+            // Interaction
+            btnStandard.onclick = () => {
+                if(btnStandard.classList.contains('active')) return;
+                btnStandard.classList.add('active');
+                btnSupertest.classList.remove('active');
+                fetchVocabulary(level, ''); // Load standard
+            };
+
+            btnSupertest.onclick = () => {
+                if(btnSupertest.classList.contains('active')) return;
+                btnSupertest.classList.add('active');
+                btnStandard.classList.remove('active');
+                fetchVocabulary(level, 'Supertest'); // Load Supertest
+            };
+
+            switchContainer.appendChild(btnStandard);
+            switchContainer.appendChild(btnSupertest);
+            heroContainer.appendChild(switchContainer);
+
+            // --- 1.b Expand/Collapse All ---
+            const toggleAllBtn = document.createElement('button');
+            toggleAllBtn.textContent = 'Expand All';
+            toggleAllBtn.style.display = 'block';
+            toggleAllBtn.style.margin = '0 auto 1rem auto';
+            toggleAllBtn.style.padding = '5px 10px';
+            toggleAllBtn.style.fontSize = '0.8rem';
+            toggleAllBtn.style.cursor = 'pointer';
+            toggleAllBtn.style.background = 'transparent';
+            toggleAllBtn.style.border = '1px solid var(--white)';
+            toggleAllBtn.style.color = 'var(--white)';
+            toggleAllBtn.style.borderRadius = '15px';
+
+            toggleAllBtn.onclick = () => {
+                const headers = document.querySelectorAll('.chapter-header');
+                const isExpand = toggleAllBtn.textContent.includes('Expand');
+                
+                headers.forEach(header => {
+                    // Simulate click if needed or force open
+                    // We need to find the specific rows
+                    // But simpler: just inspect state.
+                    const isOpen = header.querySelector('.toggle-icon').style.transform === 'rotate(90deg)';
+                    
+                    if (isExpand && !isOpen) {
+                        header.click();
+                    } else if (!isExpand && isOpen) {
+                        header.click();
+                    }
+                });
+                
+                toggleAllBtn.textContent = isExpand ? 'Collapse All' : 'Expand All';
+            };
+
+            heroContainer.appendChild(toggleAllBtn);
+
+
+            // --- 2. Read Book Button ---
             const btnLink = document.createElement('a');
             btnLink.href = 'book.html';
             btnLink.className = 'book-btn';
             btnLink.style.display = 'inline-block';
-            btnLink.style.marginTop = '1rem';
+            btnLink.style.marginTop = '0.5rem';
             btnLink.style.backgroundColor = 'var(--white)';
             btnLink.style.color = 'var(--theme-primary)';
             btnLink.style.padding = '0.75rem 1.5rem';
@@ -125,7 +259,6 @@ function initLevelPage(level) {
             btnLink.style.boxShadow = '0 4px 6px rgba(0,0,0,0.1)';
             btnLink.innerHTML = '📖 Read HSK 4 Standard Course';
             
-            // Hover effect logic handled via inline JS or CSS, but cleaner to just simple styles
             btnLink.onmouseover = () => {
                 btnLink.style.transform = 'translateY(-2px)';
                 btnLink.style.boxShadow = '0 6px 12px rgba(0,0,0,0.15)';
@@ -134,8 +267,6 @@ function initLevelPage(level) {
                 btnLink.style.transform = 'translateY(0)';
                 btnLink.style.boxShadow = '0 4px 6px rgba(0,0,0,0.1)';
             };
-
-            // Transition
             btnLink.style.transition = 'all 0.3s ease';
 
             heroContainer.appendChild(btnLink);
@@ -147,31 +278,41 @@ function initLevelPage(level) {
 }
 
 // 3. The Fetch Logic
-async function fetchVocabulary(level) {
-    const filePath = `data/hsk${level}.json`;
+async function fetchVocabulary(level, variant = '') {
+    const errorMsg = document.getElementById('error-message');
+    if (errorMsg) errorMsg.style.display = 'none';
+
+    // Handle variant properly (ensure "Supertest" matches file if needed)
+    // If variant is 'Supertest', file is 'hsk4Supertest.json'
+    const filePath = `data/hsk${level}${variant}.json`;
+    console.log(`Fetching: ${filePath}`);
 
     try {
         const response = await fetch(filePath);
         
         if (!response.ok) {
-            throw new Error(`Could not find data for HSK ${level}`);
+            throw new Error(`Could not find data for HSK ${level} (${variant || 'Standard'}). Status: ${response.status}`);
         }
 
         const rawData = await response.json();
         const normalizedData = normalizeData(rawData);
         
+        console.log(`Normalized Data: ${normalizedData.length} groups found.`);
+
         if (normalizedData.length === 0) {
-            throw new Error(`No vocabulary words found in file.`);
+            throw new Error(`No vocabulary words found in file (Parsed 0 groups).`);
         }
 
         renderTable(normalizedData);
 
     } catch (error) {
         console.error('Fetch error:', error);
-        const errorMsg = document.getElementById('error-message');
         if (errorMsg) {
-             errorMsg.textContent = `Error: ${error.message}`;
+             errorMsg.innerHTML = `<strong>Error loading data:</strong> ${error.message}<br><small>Check console for details.</small>`;
              errorMsg.style.display = 'block';
+             errorMsg.style.padding = '20px';
+             errorMsg.style.background = 'rgba(255, 0, 0, 0.1)';
+             errorMsg.style.borderRadius = '8px';
         }
     }
 }
@@ -211,13 +352,33 @@ function normalizeData(data) {
     // 3. Nested Units Object (Old/Alternative HSK 4 structure)
     if (data.units) {
         const sortedKeys = Object.keys(data.units).sort((a, b) => parseInt(a) - parseInt(b));
-        return sortedKeys.map(key => {
+        
+        // Use reduce instead of flatMap for maximum compatibility
+        return sortedKeys.reduce((acc, key) => {
             const unit = data.units[key];
-            return {
+            
+            // Case B: Words are nested in lessons (Supertest structure)
+            if (unit.lessons) {
+                const lessonKeys = Object.keys(unit.lessons).sort((a, b) => parseInt(a) - parseInt(b));
+                const lessonGroups = lessonKeys.map(lKey => {
+                    const lesson = unit.lessons[lKey];
+                    // Construct a title like "Unit 1 - Lesson 1"
+                    const groupTitle = `${unit.title || 'Unit ' + key} - ${lesson.title || 'Lesson ' + lKey}`;
+                    
+                    return {
+                        title: groupTitle,
+                        words: lesson.words || []
+                    };
+                });
+                return acc.concat(lessonGroups);
+            }
+            
+            // Case A: Words are directly in the unit (Fallback)
+            return acc.concat([{
                 title: unit.title || `Chapter ${key}`,
                 words: unit.words || []
-            };
-        });
+            }]);
+        }, []);
     }
 
     return [];
@@ -314,15 +475,15 @@ function renderTable(groups) {
             const reportBtnHtml = `<button class="report-btn" title="Report mistake">⚑</button>`;
 
             row.innerHTML = `
-                <td style="color: var(--text-light); font-size: 0.9em;">
+                <td class="col-index" style="color: var(--text-light); font-size: 0.9em;">
                     ${serialNumber++}
                     ${reportBtnHtml}
                 </td>
-                <td><span class="hanzi-main">${word.hanzi}</span></td>
-                <td>${word.pinyin}</td>
-                <td>${word.meaning}</td>
-                <td>${partOfSpeech}</td>
-                <td>${sentenceHtml}</td>
+                <td class="col-hanzi"><span class="hanzi-main">${word.hanzi}</span></td>
+                <td class="col-pinyin">${word.pinyin}</td>
+                <td class="col-meaning">${word.meaning}</td>
+                <td class="col-type">${partOfSpeech}</td>
+                <td class="col-sentence">${sentenceHtml}</td>
             `;
             
             // Attach event listener
