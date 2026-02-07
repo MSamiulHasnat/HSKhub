@@ -1201,6 +1201,119 @@
               "meaning": "win"
             }
           ]
+        },
+        "6": {
+          "title": "Lesson 6",
+          "words": [
+            {
+              "hanzi": "速度",
+              "pinyin": "sùdù",
+              "pos": "n.",
+              "meaning": "speed"
+            },
+            {
+              "hanzi": "趟",
+              "pinyin": "tàng",
+              "pos": "measure word",
+              "meaning": "measure word for times (of walk or trip)"
+            },
+            {
+              "hanzi": "报名",
+              "pinyin": "bàomíng",
+              "pos": "v.",
+              "meaning": "sign up"
+            },
+            {
+              "hanzi": "广播",
+              "pinyin": "guǎngbō",
+              "pos": "n.",
+              "meaning": "broadcast"
+            },
+            {
+              "hanzi": "估计",
+              "pinyin": "gūjì",
+              "pos": "v.",
+              "meaning": "estimate"
+            },
+            {
+              "hanzi": "顺利",
+              "pinyin": "shùnlì",
+              "pos": "adj.",
+              "meaning": "smooth, without a hitch"
+            },
+            {
+              "hanzi": "传真",
+              "pinyin": "chuánzhēn",
+              "pos": "n.",
+              "meaning": "fax"
+            },
+            {
+              "hanzi": "伤心",
+              "pinyin": "shāngxīn",
+              "pos": "adj.",
+              "meaning": "sad, grieved, heart-broken"
+            },
+            {
+              "hanzi": "理发",
+              "pinyin": "lǐfà",
+              "pos": "v.",
+              "meaning": "have one's hair cut"
+            },
+            {
+              "hanzi": "教授",
+              "pinyin": "jiàoshòu",
+              "pos": "n.",
+              "meaning": "professor"
+            },
+            {
+              "hanzi": "打扮",
+              "pinyin": "dǎban",
+              "pos": "v.",
+              "meaning": "dress up, make up"
+            },
+            {
+              "hanzi": "抬",
+              "pinyin": "tái",
+              "pos": "v.",
+              "meaning": "lift, raise, move, carry"
+            },
+            {
+              "hanzi": "样子",
+              "pinyin": "yàngzi",
+              "pos": "n.",
+              "meaning": "appearance; shape; form"
+            },
+            {
+              "hanzi": "羽毛球",
+              "pinyin": "yǔmáoqiú",
+              "pos": "n.",
+              "meaning": "badminton"
+            },
+            {
+              "hanzi": "咸",
+              "pinyin": "xián",
+              "pos": "adj.",
+              "meaning": "salty"
+            },
+            {
+              "hanzi": "首都",
+              "pinyin": "shǒudū",
+              "pos": "n.",
+              "meaning": "capital (of a country)"
+            },
+            {
+              "hanzi": "散步",
+              "pinyin": "sànbù",
+              "pos": "v.",
+              "meaning": "take a walk, go for a walk"
+            },
+            {
+              "hanzi": "输",
+              "pinyin": "shū",
+              "pos": "v.",
+              "meaning": "lose, be defeated"
+            }
+          ]
         }
       }
     }
