@@ -635,3 +635,33 @@ th:hover {
     transition: background-color 0.2s ease;
 }
 
+
+/* Creative Footer Link */
+.github-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 15px;
+    color: #bbb;
+    text-decoration: none;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 8px 16px;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.85rem;
+}
+
+.github-link:hover {
+    background: var(--theme-primary);
+    border-color: var(--theme-primary);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    color: #fff;
+}
+
+.github-icon {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+}
