@@ -6,6 +6,8 @@
 ![Status](https://img.shields.io/badge/status-active-success.svg)
 ![Contributors](https://img.shields.io/badge/contributions-welcome-orange.svg)
 
+### 🌐 [Click here to visit Live Website](https://msamiulhasnat.github.io/HSKhub/)
+
 **HSKhub** is a lightweight, vanilla JavaScript application designed to help students learn Chinese effectively. Unlike static PDF lists or clunky apps, HSKhub provides a responsive, themed, and interactive environment to study vocabulary and read standard course texts with integrated audio tools.
 
 ---
