@@ -47,6 +47,13 @@
     --theme-bg-alpha: rgba(156, 39, 176, 0.1);
 }
 
+/* Yollow */
+[data-color="yollow"] {
+    --theme-primary: #f9a825;
+    --theme-primary-dark: #f57f17;
+    --theme-bg-alpha: rgba(249, 168, 37, 0.12);
+}
+
 /* White (Monochrome/Gray) */
 [data-color="white"] {
     --theme-primary: #607d8b;

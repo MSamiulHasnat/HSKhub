@@ -31,7 +31,7 @@
 - **Focus Mode**: Sticky controls ensure playback and visibility toggles are always within reach.
 
 ### 🎨 Custom Theming System
-- **Color Palettes**: Choose from Red (Default), Blue, Green, Purple, or Monochrome.
+- **Color Palettes**: Choose from Red (Default), Blue, Green, Purple, Yollow, or Monochrome.
 - **Dark Mode**: Fully supported Light/Dark/System modes.
 - **Persistence**: Your preferences are saved automatically using LocalStorage.
 
