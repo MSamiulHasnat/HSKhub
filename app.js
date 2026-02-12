@@ -271,8 +271,65 @@ function initLevelPage(level) {
         }
     }
 
+    // --- Inject Progress Dashboard ---
+    const heroContainer = document.querySelector('.hero .container');
+    if (heroContainer) {
+        const progressContainer = document.createElement('div');
+        progressContainer.id = 'progress-dashboard';
+        progressContainer.style.marginTop = '1.5rem';
+        progressContainer.style.maxWidth = '600px';
+        progressContainer.style.marginLeft = 'auto';
+        progressContainer.style.marginRight = 'auto';
+        progressContainer.style.textAlign = 'left';
+        progressContainer.style.background = 'rgba(0,0,0,0.2)';
+        progressContainer.style.padding = '15px';
+        progressContainer.style.borderRadius = '10px';
+        progressContainer.style.color = 'var(--white)';
+        
+        progressContainer.innerHTML = `
+            <div style="display:flex; justify-content:space-between; margin-bottom:8px; font-weight:bold; font-size:0.9rem;">
+                <span>Memorization Progress</span>
+                <span id="progress-text">Loading...</span>
+            </div>
+            <div style="height:10px; background:rgba(255,255,255,0.3); border-radius:5px; overflow:hidden;">
+                <div id="progress-fill" style="height:100%; width:0%; background:#4caf50; transition: width 0.3s ease;"></div>
+            </div>
+            <div style="text-align:right; margin-top:5px;">
+                <button id="reset-progress" style="background:none; border:none; color:rgba(255,255,255,0.7); font-size:0.75rem; text-decoration:underline; cursor:pointer;">Reset Progress</button>
+            </div>
+        `;
+
+        heroContainer.appendChild(progressContainer);
+        
+        // Reset Logic
+        document.getElementById('reset-progress').addEventListener('click', () => {
+             if(confirm('Are you sure you want to clear your progress for this level?')) {
+                 saveLearnedWords(level, []);
+                 // Re-render to update checkboxes
+                 // We can trigger a re-fetch or just update DOM directly. 
+                 // Re-fetch is safer to sync everything.
+                 const currentVariantButton = document.querySelector('.source-btn.active');
+                 const variant = (currentVariantButton && currentVariantButton.textContent.includes('SuperTest')) ? 'Supertest' : '';
+                 fetchVocabulary(level, variant);
+             }
+        });
+    }
+
     // Call the fetch function
     fetchVocabulary(level);
+}
+
+// --- Storage Helpers ---
+function getLearnedWords(level) {
+    const key = `hsk-learned-${level}`;
+    const stored = localStorage.getItem(key);
+    return stored ? JSON.parse(stored) : [];
+}
+
+function saveLearnedWords(level, list) {
+    const key = `hsk-learned-${level}`;
+    localStorage.setItem(key, JSON.stringify(list));
+    // Note: Update UI calculation happens where we have access to total count (renderTable scope)
 }
 
 // 3. The Fetch Logic
@@ -396,6 +453,14 @@ function renderTable(groups) {
     
     tbody.innerHTML = ''; // Clear any existing content
 
+    // --- Progress Calculation Setup ---
+    let learnedWords = getLearnedWords(level); // 'level' is available in closure scope or we pass it
+    // Note: level variable is global-ish from top of script, but better to be safe.
+    // Actually, 'level' is defined at top level.
+    
+    const totalWords = groups.reduce((acc, group) => acc + group.words.length, 0);
+    updateProgressDisplay(learnedWords.length, totalWords);
+
     let serialNumber = 1; // Global counter across all chapters
 
     groups.forEach((group, index) => {
@@ -409,7 +474,7 @@ function renderTable(groups) {
             
             // Add icon and title
             headerRow.innerHTML = `
-                <td colspan="6">
+                <td colspan="7">
                     <span class="toggle-icon" style="display:inline-block; transition: transform 0.2s; margin-right: 8px;">▶</span>
                     ${group.title}
                     <span style="float:right; font-size: 0.8em; opacity: 0.7;">${group.words.length} words</span>
@@ -445,11 +510,19 @@ function renderTable(groups) {
         group.words.forEach(word => {
             // Create a new row
             const row = document.createElement('tr');
+            const isLearned = learnedWords.includes(word.hanzi);
+
+            // Style if learned
+            if (isLearned) {
+                row.classList.add('learned-row');
+            }
             
             // If grouped, hide by default and assign class
             if (group.title) {
-                row.className = groupId;
+                row.className = `${groupId} ${isLearned ? 'learned-row' : ''}`;
                 row.style.display = 'none';
+            } else if (isLearned) {
+                row.className = 'learned-row';
             }
 
             // Construct the HTML for the row
@@ -469,10 +542,13 @@ function renderTable(groups) {
             }
 
             // Report Button
-            // We'll attach the listener after creating the element to handle quotes safely
             const reportBtnHtml = `<button class="report-btn" title="Report mistake">⚑</button>`;
+            
+            // Checkbox HTML
+            const checkboxHtml = `<input type="checkbox" class="learned-checkbox" ${isLearned ? 'checked' : ''} aria-label="Mark as learned">`;
 
             row.innerHTML = `
+                <td style="text-align:center;">${checkboxHtml}</td>
                 <td class="col-index" style="color: var(--text-light); font-size: 0.9em;">
                     ${serialNumber++}
                     ${reportBtnHtml}
@@ -484,13 +560,30 @@ function renderTable(groups) {
                 <td class="col-sentence">${sentenceHtml}</td>
             `;
             
-            // Attach event listener
+            // Checkbox Logic
+            const checkbox = row.querySelector('.learned-checkbox');
+            checkbox.addEventListener('change', (e) => {
+                if (e.target.checked) {
+                    learnedWords.push(word.hanzi);
+                    row.classList.add('learned-row');
+                } else {
+                    learnedWords = learnedWords.filter(h => h !== word.hanzi);
+                    row.classList.remove('learned-row');
+                }
+                
+                // Save and Update Progress
+                // Create a unique set to handle duplicates if any
+                learnedWords = [...new Set(learnedWords)];
+                saveLearnedWords(level, learnedWords);
+                
+                updateProgressDisplay(learnedWords.length, totalWords);
+            });
+
+            // Attach event listener for report
             const btn = row.querySelector('.report-btn');
             if (btn) {
                 btn.addEventListener('click', (e) => {
                     e.stopPropagation(); // Stop row click (accordion)
-                    
-                    // Add Level and Chapter context
                     const location = group.title ? `HSK ${level} - ${group.title}` : `HSK ${level}`;
                     openReport(`${location}\nWord: ${word.hanzi} (${word.pinyin})`);
                 });
@@ -507,7 +600,7 @@ function renderTable(groups) {
             footerRow.style.display = 'none'; // Hidden by default
             
             footerRow.innerHTML = `
-                <td colspan="6">
+                <td colspan="7">
                     <button class="chapter-top-btn">↑ Back to Chapter Top</button>
                 </td>
             `;
@@ -528,6 +621,26 @@ function renderTable(groups) {
 
     // Initialize Back to Top Logic
     initScrollToTop();
+}
+
+function updateProgressDisplay(learnedCount, totalCount) {
+    const progressText = document.getElementById('progress-text');
+    const progressFill = document.getElementById('progress-fill');
+    
+    if (progressText && progressFill) {
+        if (totalCount === 0) return;
+        
+        const percent = Math.round((learnedCount / totalCount) * 100);
+        progressText.textContent = `${learnedCount} / ${totalCount} (${percent}%)`;
+        progressFill.style.width = `${percent}%`;
+        
+        // Optional: Change color on complete
+        if (percent === 100) {
+            progressFill.style.backgroundColor = '#FFD700'; // Gold
+        } else {
+            progressFill.style.backgroundColor = '#4caf50';
+        }
+    }
 }
 
 

@@ -672,3 +672,26 @@ th:hover {
     height: 18px;
     fill: currentColor;
 }
+
+/* Learned Row Styles */
+.learned-row {
+    background-color: rgba(76, 175, 80, 0.15) !important; /* Green tint for learned items */
+    transition: background-color 0.3s ease;
+}
+
+[data-mode="dark"] .learned-row {
+    background-color: rgba(76, 175, 80, 0.25) !important;
+}
+
+/* Checkbox Styles */
+.learned-checkbox {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: #4caf50; /* Always green */
+}
+
+.learned-checkbox:hover {
+    transform: scale(1.1);
+}
+
