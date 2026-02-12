@@ -1430,6 +1430,220 @@
               "meaning": "to recruit"
             }
           ]
+        },
+        "3": {
+          "title": "Lesson 3",
+          "words": [
+            {
+              "hanzi": "小吃",
+              "pinyin": "xiǎochī",
+              "pos": "n.",
+              "meaning": "snack"
+            },
+            {
+              "hanzi": "入口",
+              "pinyin": "rùkǒu",
+              "pos": "n.",
+              "meaning": "entrance"
+            },
+            {
+              "hanzi": "排队",
+              "pinyin": "páiduì",
+              "pos": "v.",
+              "meaning": "queue up, form a line"
+            },
+            {
+              "hanzi": "区别",
+              "pinyin": "qūbié",
+              "pos": "v./n.",
+              "meaning": "distinguish, differentiate, difference"
+            },
+            {
+              "hanzi": "景色",
+              "pinyin": "jǐngsè",
+              "pos": "n.",
+              "meaning": "scenery"
+            },
+            {
+              "hanzi": "优点",
+              "pinyin": "yōudiǎn",
+              "pos": "n.",
+              "meaning": "merit, advantage"
+            },
+            {
+              "hanzi": "高速公路",
+              "pinyin": "gāosùgōnglù",
+              "pos": "n.",
+              "meaning": "highway"
+            },
+            {
+              "hanzi": "专门",
+              "pinyin": "zhuānmén",
+              "pos": "adv.",
+              "meaning": "specially, technically"
+            },
+            {
+              "hanzi": "果汁",
+              "pinyin": "guǒzhī",
+              "pos": "n.",
+              "meaning": "fruit juice"
+            },
+            {
+              "hanzi": "厉害",
+              "pinyin": "lìhai",
+              "pos": "adj.",
+              "meaning": "awesome, difficult to deal with"
+            },
+            {
+              "hanzi": "烤鸭",
+              "pinyin": "kǎoyā",
+              "pos": "n.",
+              "meaning": "roast duck"
+            },
+            {
+              "hanzi": "短信",
+              "pinyin": "duǎnxìn",
+              "pos": "n.",
+              "meaning": "(text) message"
+            },
+            {
+              "hanzi": "矿泉水",
+              "pinyin": "kuàngquánshuǐ",
+              "pos": "n.",
+              "meaning": "mineral water"
+            },
+            {
+              "hanzi": "零钱",
+              "pinyin": "língqián",
+              "pos": "n.",
+              "meaning": "change; pocket money"
+            },
+            {
+              "hanzi": "毛",
+              "pinyin": "máo",
+              "pos": "measure word",
+              "meaning": "hair; fur; unit of money, equal to 10 cents, 1/10th of 1 RMB"
+            },
+            {
+              "hanzi": "葡萄",
+              "pinyin": "pútao",
+              "pos": "n.",
+              "meaning": "grape"
+            },
+            {
+              "hanzi": "糖",
+              "pinyin": "táng",
+              "pos": "n.",
+              "meaning": "sugar, candy"
+            }
+          ]
+        },
+        "4": {
+          "title": "Lesson 4",
+          "words": [
+            {
+              "hanzi": "热闹",
+              "pinyin": "rènao",
+              "pos": "adj.",
+              "meaning": "lively, bustling with noise and excitement"
+            },
+            {
+              "hanzi": "自然",
+              "pinyin": "zìrán",
+              "pos": "adv./n.",
+              "meaning": "nature, natural, naturally"
+            },
+            {
+              "hanzi": "京剧",
+              "pinyin": "jīngjù",
+              "pos": "n.",
+              "meaning": "Beijing Opera"
+            },
+            {
+              "hanzi": "聚会",
+              "pinyin": "jùhuì",
+              "pos": "n.",
+              "meaning": "party, get-together"
+            },
+            {
+              "hanzi": "精彩",
+              "pinyin": "jīngcǎi",
+              "pos": "adj.",
+              "meaning": "brilliant, wonderful (performance, match)"
+            },
+            {
+              "hanzi": "收入",
+              "pinyin": "shōurù",
+              "pos": "n.",
+              "meaning": "income; revenue"
+            },
+            {
+              "hanzi": "减少",
+              "pinyin": "jiǎnshǎo",
+              "pos": "v.",
+              "meaning": "reduce, decrease"
+            },
+            {
+              "hanzi": "杂志",
+              "pinyin": "zázhì",
+              "pos": "n.",
+              "meaning": "magazine"
+            },
+            {
+              "hanzi": "相反",
+              "pinyin": "xiāngfǎn",
+              "pos": "adj./conj.",
+              "meaning": "opposite, contrary"
+            },
+            {
+              "hanzi": "以为",
+              "pinyin": "yǐwéi",
+              "pos": "v.",
+              "meaning": "think, believe, consider (usually erroneously)"
+            },
+            {
+              "hanzi": "长城",
+              "pinyin": "Chángchéng",
+              "pos": "n.",
+              "meaning": "the Great Wall"
+            },
+            {
+              "hanzi": "够",
+              "pinyin": "gòu",
+              "pos": "v.",
+              "meaning": "reach; enough"
+            },
+            {
+              "hanzi": "勺子",
+              "pinyin": "sháozi",
+              "pos": "n.",
+              "meaning": "spoon"
+            },
+            {
+              "hanzi": "按照",
+              "pinyin": "ànzhào",
+              "pos": "prep.",
+              "meaning": "according to"
+            },
+            {
+              "hanzi": "小伙子",
+              "pinyin": "xiǎohuǒzi",
+              "pos": "n.",
+              "meaning": "lad"
+            },
+            {
+              "hanzi": "座位",
+              "pinyin": "zuòwèi",
+              "pos": "n.",
+              "meaning": "seat"
+            },
+            {
+              "hanzi": "云",
+              "pinyin": "yún",
+              "pos": "n.",
+              "meaning": "cloud"
+            }
+          ]
         }
       }
     }
