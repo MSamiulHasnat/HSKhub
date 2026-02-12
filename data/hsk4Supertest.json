@@ -1644,6 +1644,119 @@
               "meaning": "cloud"
             }
           ]
+        },
+        "5": {
+          "title": "Lesson 5",
+          "words": [
+            {
+              "hanzi": "同情",
+              "pinyin": "tóngqíng",
+              "pos": "v.",
+              "meaning": "sympathize, show sympathy"
+            },
+            {
+              "hanzi": "轻松",
+              "pinyin": "qīngsōng",
+              "pos": "adj.",
+              "meaning": "light, relaxed"
+            },
+            {
+              "hanzi": "激动",
+              "pinyin": "jīdòng",
+              "pos": "adj.",
+              "meaning": "exciting, moving"
+            },
+            {
+              "hanzi": "却",
+              "pinyin": "què",
+              "pos": "adv.",
+              "meaning": "but, yet, however"
+            },
+            {
+              "hanzi": "猜",
+              "pinyin": "cāi",
+              "pos": "v.",
+              "meaning": "guess"
+            },
+            {
+              "hanzi": "害羞",
+              "pinyin": "hàixiū",
+              "pos": "adj.",
+              "meaning": "shy"
+            },
+            {
+              "hanzi": "小说",
+              "pinyin": "xiǎoshuō",
+              "pos": "n.",
+              "meaning": "novel, fiction"
+            },
+            {
+              "hanzi": "长江",
+              "pinyin": "Chángjiāng",
+              "pos": "n.",
+              "meaning": "the Yantze River"
+            },
+            {
+              "hanzi": "提",
+              "pinyin": "tí",
+              "pos": "v.",
+              "meaning": "put forward"
+            },
+            {
+              "hanzi": "通过",
+              "pinyin": "tōngguò",
+              "pos": "v.",
+              "meaning": "pass (through)"
+            },
+            {
+              "hanzi": "感动",
+              "pinyin": "gǎndòng",
+              "pos": "v.",
+              "meaning": "touch (sb emotionally), moving"
+            },
+            {
+              "hanzi": "讨厌",
+              "pinyin": "tǎoyàn",
+              "pos": "v.",
+              "meaning": "dislike, be disgusted with"
+            },
+            {
+              "hanzi": "降低",
+              "pinyin": "jiàngdī",
+              "pos": "v.",
+              "meaning": "to lower, to decrease"
+            },
+            {
+              "hanzi": "笨",
+              "pinyin": "bèn",
+              "pos": "adj.",
+              "meaning": "foolish, stupid"
+            },
+            {
+              "hanzi": "家具",
+              "pinyin": "jiājù",
+              "pos": "n.",
+              "meaning": "furniture"
+            },
+            {
+              "hanzi": "无聊",
+              "pinyin": "wúliáo",
+              "pos": "adj.",
+              "meaning": "boring"
+            },
+            {
+              "hanzi": "橡皮",
+              "pinyin": "xiàngpí",
+              "pos": "n.",
+              "meaning": "eraser"
+            },
+            {
+              "hanzi": "篇",
+              "pinyin": "piān",
+              "pos": "measure word",
+              "meaning": "measure word for essays, articles"
+            }
+          ]
         }
       }
     }
