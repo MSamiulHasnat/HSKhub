@@ -1322,7 +1322,116 @@
       "lessons": {
         "1": {
           "title": "Lesson 1",
-          "words": []
+          "words": [
+            {
+              "hanzi": "抱歉",
+              "pinyin": "bàoqiàn",
+              "pos": "adj.",
+              "meaning": "be sorry"
+            },
+            {
+              "hanzi": "困难",
+              "pinyin": "kùnnan",
+              "pos": "n./adj.",
+              "meaning": "difficulty"
+            },
+            {
+              "hanzi": "空气",
+              "pinyin": "kōngqì",
+              "pos": "n.",
+              "meaning": "air"
+            },
+            {
+              "hanzi": "停",
+              "pinyin": "tíng",
+              "pos": "v.",
+              "meaning": "stop"
+            },
+            {
+              "hanzi": "律师",
+              "pinyin": "lǜshī",
+              "pos": "n.",
+              "meaning": "lawyer"
+            },
+            {
+              "hanzi": "安全",
+              "pinyin": "ānquán",
+              "pos": "adj.",
+              "meaning": "safe"
+            },
+            {
+              "hanzi": "职业",
+              "pinyin": "zhíyè",
+              "pos": "n.",
+              "meaning": "occupation, profession"
+            },
+            {
+              "hanzi": "森林",
+              "pinyin": "sēnlín",
+              "pos": "n.",
+              "meaning": "forest"
+            },
+            {
+              "hanzi": "不管",
+              "pinyin": "bùguǎn",
+              "pos": "conj.",
+              "meaning": "regardless of, no matter"
+            },
+            {
+              "hanzi": "表格",
+              "pinyin": "biǎogé",
+              "pos": "n.",
+              "meaning": "form, table"
+            },
+            {
+              "hanzi": "顺序",
+              "pinyin": "shùnxù",
+              "pos": "n.",
+              "meaning": "order, sequence"
+            },
+            {
+              "hanzi": "戴",
+              "pinyin": "dài",
+              "pos": "v.",
+              "meaning": "wear, put on"
+            },
+            {
+              "hanzi": "破",
+              "pinyin": "pò",
+              "pos": "adj.",
+              "meaning": "broken, damaged"
+            },
+            {
+              "hanzi": "尤其",
+              "pinyin": "yóuqí",
+              "pos": "adv.",
+              "meaning": "especially, particularly"
+            },
+            {
+              "hanzi": "寒假",
+              "pinyin": "hánjià",
+              "pos": "n.",
+              "meaning": "winter vacation"
+            },
+            {
+              "hanzi": "建议",
+              "pinyin": "jiànyì",
+              "pos": "v./n.",
+              "meaning": "suggest, propose, suggestion, proposal"
+            },
+            {
+              "hanzi": "垃圾桶",
+              "pinyin": "lājītǒng",
+              "pos": "n.",
+              "meaning": "trash can"
+            },
+            {
+              "hanzi": "而",
+              "pinyin": "ér",
+              "pos": "conj.",
+              "meaning": "and, as well as; but"
+            }
+          ]
         },
         "2": {
           "title": "Lesson 2",
