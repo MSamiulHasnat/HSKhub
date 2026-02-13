@@ -408,32 +408,35 @@ function normalizeData(data) {
     if (data.units) {
         const sortedKeys = Object.keys(data.units).sort((a, b) => parseInt(a) - parseInt(b));
         
-        // Use reduce instead of flatMap for maximum compatibility
-        return sortedKeys.reduce((acc, key) => {
+        return sortedKeys.map(key => {
             const unit = data.units[key];
+            const title = unit.title || `Unit ${key}`;
             
-            // Case B: Words are nested in lessons (Supertest structure)
+            // Nested Lessons
             if (unit.lessons) {
                 const lessonKeys = Object.keys(unit.lessons).sort((a, b) => parseInt(a) - parseInt(b));
                 const lessonGroups = lessonKeys.map(lKey => {
                     const lesson = unit.lessons[lKey];
-                    // Construct a title like "Unit 1 - Lesson 1"
-                    const groupTitle = `${unit.title || 'Unit ' + key} - ${lesson.title || 'Lesson ' + lKey}`;
-                    
                     return {
-                        title: groupTitle,
+                        title: lesson.title || `Lesson ${lKey}`,
                         words: lesson.words || []
                     };
                 });
-                return acc.concat(lessonGroups);
+                
+                return {
+                    title: title,
+                    isParent: true, // Marker for hierarchical rendering
+                    subGroups: lessonGroups,
+                    words: [] // Parent has no words directly, but useful for counting if needed
+                };
             }
             
-            // Case A: Words are directly in the unit (Fallback)
-            return acc.concat([{
-                title: unit.title || `Chapter ${key}`,
+            // Fallback for flat unit
+            return {
+                title: title,
                 words: unit.words || []
-            }]);
-        }, []);
+            };
+        });
     }
 
     return [];
@@ -454,97 +457,180 @@ function renderTable(groups) {
     tbody.innerHTML = ''; // Clear any existing content
 
     // --- Progress Calculation Setup ---
-    let learnedWords = getLearnedWords(level); // 'level' is available in closure scope or we pass it
-    // Note: level variable is global-ish from top of script, but better to be safe.
-    // Actually, 'level' is defined at top level.
+    let learnedWords = getLearnedWords(level); 
     
-    const totalWords = groups.reduce((acc, group) => acc + group.words.length, 0);
+    // Calculate total words recursively
+    const countWords = (grp) => {
+        if (grp.isParent && grp.subGroups) {
+            return grp.subGroups.reduce((sum, sub) => sum + countWords(sub), 0);
+        }
+        return (grp.words || []).length;
+    };
+    
+    const totalWords = groups.reduce((acc, group) => acc + countWords(group), 0);
     updateProgressDisplay(learnedWords.length, totalWords);
 
-    let serialNumber = 1; // Global counter across all chapters
+    let serialNumber = 1; // Global counter
 
-    groups.forEach((group, index) => {
-        const groupId = `chapter-group-${index}`;
-        
-        // Only render headers if we have a title (HSK 4)
-        if (group.title) {
-            const headerRow = document.createElement('tr');
-            headerRow.className = 'chapter-header';
-            headerRow.style.cursor = 'pointer';
+    groups.forEach((group, groupIndex) => {
+        // --- Case A: Nested Structure (SuperTest/Units) ---
+        if (group.isParent) {
+            const unitId = `unit-${groupIndex}`;
             
-            // Add icon and title
-            headerRow.innerHTML = `
-                <td colspan="7">
-                    <span class="toggle-icon" style="display:inline-block; transition: transform 0.2s; margin-right: 8px;">▶</span>
+            // 1. Render Unit Header
+            const unitRow = document.createElement('tr');
+            unitRow.className = 'unit-header';
+            unitRow.style.cursor = 'pointer';
+            unitRow.style.backgroundColor = 'var(--theme-bg-alpha)'; // Distinct background
+            unitRow.style.borderBottom = '2px solid var(--theme-primary)';
+            
+            // Count total words in this unit for the badge
+            const unitWordCount = countWords(group);
+
+            unitRow.innerHTML = `
+                <td colspan="7" style="padding: 15px; font-weight: bold; font-size: 1.2rem; color: var(--theme-primary-dark);">
+                    <span class="toggle-icon" style="display:inline-block; transition: transform 0.2s; margin-right: 10px;">▶</span>
                     ${group.title}
-                    <span style="float:right; font-size: 0.8em; opacity: 0.7;">${group.words.length} words</span>
+                    <span style="float:right; font-size: 0.8rem; background: var(--bg-light); padding: 2px 8px; border-radius: 10px; color: var(--text-light); margin-top: 2px;">${unitWordCount} words</span>
                 </td>
             `;
+            tbody.appendChild(unitRow);
 
-            // Click Handler
-            headerRow.addEventListener('click', () => {
-                const rows = document.querySelectorAll(`.${groupId}`);
-                const icon = headerRow.querySelector('.toggle-icon');
+            // Unit Toggle Logic
+            unitRow.addEventListener('click', () => {
+                const subHeaders = document.querySelectorAll(`.lesson-header-${unitId}`);
+                const icon = unitRow.querySelector('.toggle-icon');
                 
-                // Determine current state based on first row
-                const isHidden = rows.length > 0 && rows[0].style.display === 'none';
+                // Check state based on first subheader
+                const isHidden = subHeaders.length > 0 && subHeaders[0].style.display === 'none';
                 
-                rows.forEach(row => {
-                    row.style.display = isHidden ? 'table-row' : 'none';
+                subHeaders.forEach(header => {
+                    header.style.display = isHidden ? 'table-row' : 'none';
+                    // If we are hiding the unit, we should also hide the rows of the lessons?
+                    // Typically accordion behavior: collapse everything or just hide the headers?
+                    // Let's just hide the headers. If the user re-opens the unit, the lessons state remains.
+                    
+                    // Actually, if we hide the lesson header, we must also hide the lesson content rows
+                    // Otherwise they stay floating.
+                    if (!isHidden) {
+                        // Closing Unit: convert header's "open" state to closed visual, but maybe keep state?
+                        // Simplest: Hide EVERYTHING belonging to this unit.
+                        const lessonId = header.getAttribute('data-lesson-id');
+                        const rows = document.querySelectorAll(`.${lessonId}`);
+                        rows.forEach(r => r.style.display = 'none');
+                        // Reset the lesson icon?
+                        const lessonIcon = header.querySelector('.toggle-icon');
+                        if(lessonIcon) lessonIcon.style.transform = 'rotate(0deg)';
+                    }
                 });
 
-                // Animate Icon
                 icon.style.transform = isHidden ? 'rotate(90deg)' : 'rotate(0deg)';
-                
-                // Optional: distinct style for open header
-                if (isHidden) {
-                    headerRow.classList.add('open');
-                } else {
-                    headerRow.classList.remove('open');
-                }
             });
 
-            tbody.appendChild(headerRow);
-        }
+            // 2. Render Lesson Sub-Groups
+            if (group.subGroups) {
+                group.subGroups.forEach((subGroup, subIndex) => {
+                    const lessonId = `${unitId}-lesson-${subIndex}`;
+                    
+                    // Lesson Header
+                    const lessonRow = document.createElement('tr');
+                    lessonRow.className = `chapter-header lesson-header-${unitId}`; // Re-use chapter-header style but add specific class
+                    lessonRow.setAttribute('data-lesson-id', lessonId);
+                    lessonRow.style.cursor = 'pointer';
+                    lessonRow.style.display = 'none'; // Hidden by default (Unit closed)
+                    
+                    // Indented style for hierarchy
+                    lessonRow.innerHTML = `
+                        <td colspan="7" style="padding-left: 30px; border-left: 4px solid var(--theme-primary);">
+                            <span class="toggle-icon" style="display:inline-block; transition: transform 0.2s; margin-right: 8px;">▶</span>
+                            ${subGroup.title}
+                            <span style="float:right; font-size: 0.8em; opacity: 0.7;">${subGroup.words.length} words</span>
+                        </td>
+                    `;
+                    tbody.appendChild(lessonRow);
 
-        group.words.forEach(word => {
-            // Create a new row
-            const row = document.createElement('tr');
-            const isLearned = learnedWords.includes(word.hanzi);
+                    // Lesson Toggle Logic
+                    lessonRow.addEventListener('click', (e) => {
+                        e.stopPropagation(); // Don't trigger unit toggle
+                        const rows = document.querySelectorAll(`.${lessonId}`);
+                        const icon = lessonRow.querySelector('.toggle-icon');
+                        const isHidden = rows.length > 0 && rows[0].style.display === 'none';
+                        
+                        rows.forEach(row => {
+                            row.style.display = isHidden ? 'table-row' : 'none';
+                        });
+                        icon.style.transform = isHidden ? 'rotate(90deg)' : 'rotate(0deg)';
+                    });
 
-            // Style if learned
-            if (isLearned) {
-                row.classList.add('learned-row');
+                    // Render Words
+                    renderWords(subGroup.words, lessonId, tbody, learnedWords, totalWords);
+                });
             }
+
+        // --- Case B: Flat Structure (Standard HSK) ---
+        } else {
+            const groupId = `chapter-group-${groupIndex}`;
             
-            // If grouped, hide by default and assign class
+            // Header
             if (group.title) {
-                row.className = `${groupId} ${isLearned ? 'learned-row' : ''}`;
-                row.style.display = 'none';
-            } else if (isLearned) {
-                row.className = 'learned-row';
+                const headerRow = document.createElement('tr');
+                headerRow.className = 'chapter-header';
+                headerRow.style.cursor = 'pointer';
+                
+                headerRow.innerHTML = `
+                    <td colspan="7">
+                        <span class="toggle-icon" style="display:inline-block; transition: transform 0.2s; margin-right: 8px;">▶</span>
+                        ${group.title}
+                        <span style="float:right; font-size: 0.8em; opacity: 0.7;">${group.words ? group.words.length : 0} words</span>
+                    </td>
+                `;
+
+                headerRow.addEventListener('click', () => {
+                    const rows = document.querySelectorAll(`.${groupId}`);
+                    const icon = headerRow.querySelector('.toggle-icon');
+                    const isHidden = rows.length > 0 && rows[0].style.display === 'none';
+                    
+                    rows.forEach(row => {
+                        row.style.display = isHidden ? 'table-row' : 'none';
+                    });
+                    icon.style.transform = isHidden ? 'rotate(90deg)' : 'rotate(0deg)';
+                });
+
+                tbody.appendChild(headerRow);
             }
 
-            // Construct the HTML for the row
-            // HSK 4 uses 'pos' instead of 'type', handle both
-            const partOfSpeech = word.type || word.pos || '';
+            // Words
+            renderWords(group.words, group.title ? groupId : '', tbody, learnedWords, totalWords);
+            
+            // Footer
+             if (group.title) {
+                renderFooter(groupId, groupIndex, tbody);
+            }
+        }
+    });
 
-            // Handle Sentence (if exists)
+    // Helper to render word rows
+    function renderWords(words, classId, container, learnedList, total) {
+        if (!words) return;
+        
+        words.forEach(word => {
+            const row = document.createElement('tr');
+            const isLearned = learnedList.includes(word.hanzi);
+
+            // Classes
+            if (isLearned) row.classList.add('learned-row');
+            if (classId) {
+                row.classList.add(classId);
+                row.style.display = 'none'; // Default hidden for groups
+            }
+
+            // Content Construction
+            const partOfSpeech = word.type || word.pos || '';
             let sentenceHtml = '';
             if (word.sentence) {
-                sentenceHtml = `
-                    <div class="sentence-block">
-                        <div class="cn">${word.sentence}</div>
-                        <div class="py">${word.sentence_pinyin || ''}</div>
-                        <div class="en">${word.sentence_meaning || ''}</div>
-                    </div>
-                `;
+                sentenceHtml = `<div class="sentence-block"><div class="cn">${word.sentence}</div><div class="py">${word.sentence_pinyin || ''}</div><div class="en">${word.sentence_meaning || ''}</div></div>`;
             }
-
-            // Report Button
             const reportBtnHtml = `<button class="report-btn" title="Report mistake">⚑</button>`;
-            
-            // Checkbox HTML
             const checkboxHtml = `<input type="checkbox" class="learned-checkbox" ${isLearned ? 'checked' : ''} aria-label="Mark as learned">`;
 
             row.innerHTML = `
@@ -559,67 +645,59 @@ function renderTable(groups) {
                 <td class="col-type">${partOfSpeech}</td>
                 <td class="col-sentence">${sentenceHtml}</td>
             `;
-            
-            // Checkbox Logic
+
+            // Events
             const checkbox = row.querySelector('.learned-checkbox');
             checkbox.addEventListener('change', (e) => {
                 if (e.target.checked) {
-                    learnedWords.push(word.hanzi);
+                    learnedList.push(word.hanzi);
                     row.classList.add('learned-row');
                 } else {
-                    learnedWords = learnedWords.filter(h => h !== word.hanzi);
+                    const idx = learnedList.indexOf(word.hanzi);
+                    if (idx > -1) learnedList.splice(idx, 1);
                     row.classList.remove('learned-row');
                 }
-                
-                // Save and Update Progress
-                // Create a unique set to handle duplicates if any
-                learnedWords = [...new Set(learnedWords)];
-                saveLearnedWords(level, learnedWords);
-                
-                updateProgressDisplay(learnedWords.length, totalWords);
+                saveLearnedWords(level, [...new Set(learnedList)]);
+                updateProgressDisplay(learnedList.length, total);
             });
-
-            // Attach event listener for report
-            const btn = row.querySelector('.report-btn');
+            
+             const btn = row.querySelector('.report-btn');
             if (btn) {
                 btn.addEventListener('click', (e) => {
-                    e.stopPropagation(); // Stop row click (accordion)
-                    const location = group.title ? `HSK ${level} - ${group.title}` : `HSK ${level}`;
-                    openReport(`${location}\nWord: ${word.hanzi} (${word.pinyin})`);
+                    e.stopPropagation(); 
+                    openReport(`HSK ${level}\nWord: ${word.hanzi} (${word.pinyin})`);
                 });
             }
 
-            // Append to the table body
-            tbody.appendChild(row);
+            container.appendChild(row);
+        });
+        
+        // Add footer for this specific lesson/group
+        if (classId) {
+             renderFooter(classId, -1, container); // index -1 because scroll logic differs or we skip
+        }
+    }
+
+    function renderFooter(groupId, headerIndex, container) {
+        const footerRow = document.createElement('tr');
+        footerRow.className = `chapter-footer ${groupId}`;
+        footerRow.style.display = 'none';
+        
+        footerRow.innerHTML = `<td colspan="7"><button class="chapter-top-btn">↑ Back to Top</button></td>`;
+        
+        footerRow.querySelector('button').addEventListener('click', (e) => {
+            e.preventDefault();
+            // Find the visible header for this group
+            // For nested, it's complex. Simple approach: find the first row of this group and scroll to it
+            const firstRow = document.querySelector(`.${groupId}`);
+            if (firstRow && firstRow.previousElementSibling) {
+                 firstRow.previousElementSibling.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
         });
 
-        // Add Chapter Footer (Scroll to Top of Chapter)
-        if (group.title) {
-            const footerRow = document.createElement('tr');
-            footerRow.className = `chapter-footer ${groupId}`; // Assign class so it toggles with the rest
-            footerRow.style.display = 'none'; // Hidden by default
-            
-            footerRow.innerHTML = `
-                <td colspan="7">
-                    <button class="chapter-top-btn">↑ Back to Chapter Top</button>
-                </td>
-            `;
-            
-            // Interaction
-            footerRow.querySelector('button').addEventListener('click', (e) => {
-                e.preventDefault(); // Prevent accidental form submit
-                // Scroll the header row into view smoothly
-                const header = document.querySelectorAll('.chapter-header')[index]; // Get corresponding header
-                if (header) {
-                    header.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }
-            });
+        container.appendChild(footerRow);
+    }
 
-            tbody.appendChild(footerRow);
-        }
-    });
-
-    // Initialize Back to Top Logic
     initScrollToTop();
 }
 
