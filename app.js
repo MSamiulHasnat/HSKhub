@@ -470,6 +470,34 @@ function renderTable(groups) {
     const totalWords = groups.reduce((acc, group) => acc + countWords(group), 0);
     updateProgressDisplay(learnedWords.length, totalWords);
 
+    // Helpers for bulk toggling
+    const updateLearnedList = (newWords, isAdding) => {
+        if (isAdding) {
+            learnedWords = [...new Set([...learnedWords, ...newWords])];
+        } else {
+            learnedWords = learnedWords.filter(w => !newWords.includes(w));
+        }
+        saveLearnedWords(level, learnedWords);
+        updateProgressDisplay(learnedWords.length, totalWords);
+        
+        // Update Checked State in UI for all affected rows
+        const checkboxes = document.querySelectorAll('.learned-checkbox');
+        checkboxes.forEach(cb => {
+            // Find word hanzi from row context (assuming stored in attribute or traversable)
+            // Safer way: re-check the 'hanzi' span in the row
+            const row = cb.closest('tr');
+            const hanziSpan = row.querySelector('.hanzi-main');
+            if (hanziSpan) {
+                const hanzi = hanziSpan.textContent;
+                if (newWords.includes(hanzi)) {
+                    cb.checked = isAdding;
+                    if (isAdding) row.classList.add('learned-row');
+                    else row.classList.remove('learned-row');
+                }
+            }
+        });
+    };
+
     let serialNumber = 1; // Global counter
 
     groups.forEach((group, groupIndex) => {
@@ -484,11 +512,28 @@ function renderTable(groups) {
             unitRow.style.backgroundColor = 'var(--theme-bg-alpha)'; // Distinct background
             unitRow.style.borderBottom = '2px solid var(--theme-primary)';
             
-            // Count total words in this unit for the badge
             const unitWordCount = countWords(group);
+            
+            // Collect all words in this unit for "Check All"
+            const getAllUnitWordHanzis = () => {
+                let hanzis = [];
+                if(group.subGroups) {
+                    group.subGroups.forEach(sub => {
+                        if(sub.words) hanzis.push(...sub.words.map(w => w.hanzi));
+                    })
+                }
+                return hanzis;
+            };
+
+            // Check if all are already learned to set initial state
+            const unitHanzis = getAllUnitWordHanzis();
+            const isUnitFullyLearned = unitHanzis.length > 0 && unitHanzis.every(h => learnedWords.includes(h));
 
             unitRow.innerHTML = `
-                <td colspan="7" style="padding: 15px; font-weight: bold; font-size: 1.2rem; color: var(--theme-primary-dark);">
+                <td style="padding: 15px; text-align: center; width: 40px;">
+                    <input type="checkbox" class="unit-checkbox" title="Mark Unit as Learned" ${isUnitFullyLearned ? 'checked' : ''}>
+                </td>
+                <td colspan="6" style="padding: 15px; font-weight: bold; font-size: 1.2rem; color: var(--theme-primary-dark);">
                     <span class="toggle-icon" style="display:inline-block; transition: transform 0.2s; margin-right: 10px;">▶</span>
                     ${group.title}
                     <span style="float:right; font-size: 0.8rem; background: var(--bg-light); padding: 2px 8px; border-radius: 10px; color: var(--text-light); margin-top: 2px;">${unitWordCount} words</span>
@@ -496,8 +541,23 @@ function renderTable(groups) {
             `;
             tbody.appendChild(unitRow);
 
+            // Unit Checkbox Event
+            const unitCb = unitRow.querySelector('.unit-checkbox');
+            unitCb.onclick = (e) => {
+                e.stopPropagation(); // Stop toggle
+                const isChecked = e.target.checked;
+                updateLearnedList(unitHanzis, isChecked);
+                
+                // Also update all lesson checkboxes inside this unit
+                const lessonCbs = document.querySelectorAll(`.lesson-checkbox-${unitId}`);
+                lessonCbs.forEach(lcb => lcb.checked = isChecked);
+            };
+
             // Unit Toggle Logic
-            unitRow.addEventListener('click', () => {
+            unitRow.addEventListener('click', (e) => {
+                // Ignore clicks on checkbox cell (though onclick stops propagation, be safe)
+                if (e.target.type === 'checkbox') return;
+
                 const subHeaders = document.querySelectorAll(`.lesson-header-${unitId}`);
                 const icon = unitRow.querySelector('.toggle-icon');
                 
@@ -506,19 +566,10 @@ function renderTable(groups) {
                 
                 subHeaders.forEach(header => {
                     header.style.display = isHidden ? 'table-row' : 'none';
-                    // If we are hiding the unit, we should also hide the rows of the lessons?
-                    // Typically accordion behavior: collapse everything or just hide the headers?
-                    // Let's just hide the headers. If the user re-opens the unit, the lessons state remains.
-                    
-                    // Actually, if we hide the lesson header, we must also hide the lesson content rows
-                    // Otherwise they stay floating.
                     if (!isHidden) {
-                        // Closing Unit: convert header's "open" state to closed visual, but maybe keep state?
-                        // Simplest: Hide EVERYTHING belonging to this unit.
                         const lessonId = header.getAttribute('data-lesson-id');
                         const rows = document.querySelectorAll(`.${lessonId}`);
                         rows.forEach(r => r.style.display = 'none');
-                        // Reset the lesson icon?
                         const lessonIcon = header.querySelector('.toggle-icon');
                         if(lessonIcon) lessonIcon.style.transform = 'rotate(0deg)';
                     }
@@ -539,18 +590,34 @@ function renderTable(groups) {
                     lessonRow.style.cursor = 'pointer';
                     lessonRow.style.display = 'none'; // Hidden by default (Unit closed)
                     
+                    const lessonHanzis = subGroup.words ? subGroup.words.map(w => w.hanzi) : [];
+                    const isLessonFullyLearned = lessonHanzis.length > 0 && lessonHanzis.every(h => learnedWords.includes(h));
+
                     // Indented style for hierarchy
                     lessonRow.innerHTML = `
-                        <td colspan="7" style="padding-left: 30px; border-left: 4px solid var(--theme-primary);">
+                         <td style="text-align: center; width: 40px; background: rgba(0,0,0,0.02);">
+                             <input type="checkbox" class="lesson-checkbox-${unitId}" title="Mark Lesson as Learned" ${isLessonFullyLearned ? 'checked' : ''}>
+                         </td>
+                        <td colspan="6" style="padding-left: 30px; border-left: 4px solid var(--theme-primary);">
                             <span class="toggle-icon" style="display:inline-block; transition: transform 0.2s; margin-right: 8px;">▶</span>
                             ${subGroup.title}
                             <span style="float:right; font-size: 0.8em; opacity: 0.7;">${subGroup.words.length} words</span>
                         </td>
                     `;
                     tbody.appendChild(lessonRow);
+                    
+                    // Lesson Checkbox Event
+                    const lessonCb = lessonRow.querySelector('input[type="checkbox"]');
+                    lessonCb.onclick = (e) => {
+                        e.stopPropagation();
+                        updateLearnedList(lessonHanzis, e.target.checked);
+                        // Optional: Check if all lessons are now checked -> check unit?
+                        // Simple logic for now.
+                    };
 
                     // Lesson Toggle Logic
                     lessonRow.addEventListener('click', (e) => {
+                        if (e.target.type === 'checkbox') return;
                         e.stopPropagation(); // Don't trigger unit toggle
                         const rows = document.querySelectorAll(`.${lessonId}`);
                         const icon = lessonRow.querySelector('.toggle-icon');
@@ -570,7 +637,9 @@ function renderTable(groups) {
         // --- Case B: Flat Structure (Standard HSK) ---
         } else {
             const groupId = `chapter-group-${groupIndex}`;
-            
+            const groupHanzis = group.words ? group.words.map(w => w.hanzi) : [];
+            const isGroupFullyLearned = groupHanzis.length > 0 && groupHanzis.every(h => learnedWords.includes(h));
+
             // Header
             if (group.title) {
                 const headerRow = document.createElement('tr');
@@ -578,14 +647,25 @@ function renderTable(groups) {
                 headerRow.style.cursor = 'pointer';
                 
                 headerRow.innerHTML = `
-                    <td colspan="7">
+                    <td style="text-align: center; width: 40px;">
+                        <input type="checkbox" class="chapter-checkbox" title="Mark Chapter as Learned" ${isGroupFullyLearned ? 'checked' : ''}>
+                    </td>
+                    <td colspan="6">
                         <span class="toggle-icon" style="display:inline-block; transition: transform 0.2s; margin-right: 8px;">▶</span>
                         ${group.title}
                         <span style="float:right; font-size: 0.8em; opacity: 0.7;">${group.words ? group.words.length : 0} words</span>
                     </td>
                 `;
+                
+                // Checkbox Event
+                const chapterCb = headerRow.querySelector('.chapter-checkbox');
+                chapterCb.onclick = (e) => {
+                    e.stopPropagation();
+                    updateLearnedList(groupHanzis, e.target.checked);
+                };
 
-                headerRow.addEventListener('click', () => {
+                headerRow.addEventListener('click', (e) => {
+                    if (e.target.type === 'checkbox') return;
                     const rows = document.querySelectorAll(`.${groupId}`);
                     const icon = headerRow.querySelector('.toggle-icon');
                     const isHidden = rows.length > 0 && rows[0].style.display === 'none';
@@ -611,6 +691,7 @@ function renderTable(groups) {
 
     // Helper to render word rows
     function renderWords(words, classId, container, learnedList, total) {
+
         if (!words) return;
         
         words.forEach(word => {
