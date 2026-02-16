@@ -616,6 +616,7 @@ table.hide-type .col-type,
 table.hide-sentence .col-sentence {
     color: transparent !important;
     text-shadow: 0 0 10px var(--text-light);
+    -webkit-user-select: none;
     user-select: none;
     transition: all 0.3s ease;
 }
@@ -647,16 +648,18 @@ th:hover {
 .github-link {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
+    gap: 8px; /* Support for gap in flexbox for older browsers */
     margin-top: 15px;
     color: #bbb;
     text-decoration: none;
     background: rgba(255, 255, 255, 0.05);
     padding: 8px 16px;
     border-radius: 20px;
+    -webkit-transition: all 0.3s ease;
     transition: all 0.3s ease;
     border: 1px solid rgba(255, 255, 255, 0.1);
     font-size: 0.85rem;
+
 }
 
 .github-link:hover {
