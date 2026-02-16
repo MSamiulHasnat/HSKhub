@@ -678,23 +678,62 @@ th:hover {
 
 /* Learned Row Styles */
 .learned-row {
-    background-color: rgba(76, 175, 80, 0.15) !important; /* Green tint for learned items */
-    transition: background-color 0.3s ease;
+    background: linear-gradient(to right, rgba(76, 175, 80, 0.15), rgba(76, 175, 80, 0.05)) !important;
+    border-left: 3px solid #4caf50;
+    transition: all 0.3s ease;
 }
 
 [data-mode="dark"] .learned-row {
-    background-color: rgba(76, 175, 80, 0.25) !important;
+    background: linear-gradient(to right, rgba(76, 175, 80, 0.25), rgba(76, 175, 80, 0.1)) !important;
+}
+
+/* Unit Header Styles */
+.unit-header-row {
+    background-color: var(--theme-bg-alpha);
+    border-bottom: 1px solid rgba(0,0,0,0.05); /* Softer border */
+    position: relative;
+    transition: background-color 0.2s;
+}
+.unit-header-row:hover {
+    background-color: var(--theme-bg-alpha-hover, rgba(0,0,0,0.05));
+}
+
+.unit-header-title {
+    padding: 15px; 
+    font-weight: bold; 
+    font-size: 1.2rem; 
+    color: var(--theme-primary-dark);
+}
+
+/* Lesson Header Styles */
+.lesson-header-row {
+    background-color: rgba(255,255,255,0.02);
+}
+
+.lesson-header-cell {
+    padding-left: 20px;
+    border-left: 3px solid var(--theme-bg-alpha); /* Use the transparent theme color */
+    color: var(--text-dark);
+    font-weight: 500;
 }
 
 /* Checkbox Styles */
-.learned-checkbox {
+.learned-checkbox,
+.unit-checkbox,
+.chapter-checkbox,
+[class*="lesson-checkbox-"],
+#vocab-body input[type="checkbox"] {
     width: 18px;
     height: 18px;
     cursor: pointer;
-    accent-color: #4caf50; /* Always green */
+    accent-color: #4caf50 !important; /* Always green, forced override */
 }
 
-.learned-checkbox:hover {
+.learned-checkbox:hover,
+.unit-checkbox:hover,
+.chapter-checkbox:hover,
+[class*="lesson-checkbox-"]:hover,
+#vocab-body input[type="checkbox"]:hover {
     transform: scale(1.1);
 }
 

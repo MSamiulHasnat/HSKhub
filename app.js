@@ -496,6 +496,9 @@ function renderTable(groups) {
                 }
             }
         });
+
+        // Update Unit/Lesson/Chapter Headers State
+        updateHeaderStates();
     };
 
     let serialNumber = 1; // Global counter
@@ -507,11 +510,10 @@ function renderTable(groups) {
             
             // 1. Render Unit Header
             const unitRow = document.createElement('tr');
-            unitRow.className = 'unit-header';
+            unitRow.className = 'unit-header unit-header-row'; // Use new consolidated style class
             unitRow.style.cursor = 'pointer';
-            unitRow.style.backgroundColor = 'var(--theme-bg-alpha)'; // Distinct background
-            unitRow.style.borderBottom = '2px solid var(--theme-primary)';
-            
+            // Background/Border handled by CSS now
+
             const unitWordCount = countWords(group);
             
             // Collect all words in this unit for "Check All"
@@ -528,6 +530,10 @@ function renderTable(groups) {
             // Check if all are already learned to set initial state
             const unitHanzis = getAllUnitWordHanzis();
             const isUnitFullyLearned = unitHanzis.length > 0 && unitHanzis.every(h => learnedWords.includes(h));
+            
+            if (isUnitFullyLearned) {
+                unitRow.classList.add('learned-row');
+            }
 
             unitRow.innerHTML = `
                 <td style="padding: 15px; text-align: center; width: 40px;">
@@ -548,9 +554,21 @@ function renderTable(groups) {
                 const isChecked = e.target.checked;
                 updateLearnedList(unitHanzis, isChecked);
                 
+                // Add visual feedback to unit row immediately
+                if(isChecked) unitRow.classList.add('learned-row');
+                else unitRow.classList.remove('learned-row');
+                
                 // Also update all lesson checkboxes inside this unit
                 const lessonCbs = document.querySelectorAll(`.lesson-checkbox-${unitId}`);
-                lessonCbs.forEach(lcb => lcb.checked = isChecked);
+                lessonCbs.forEach(lcb => {
+                    lcb.checked = isChecked;
+                    // Update lesson row styles too
+                    const lRow = lcb.closest('tr');
+                    if(lRow) {
+                        if(isChecked) lRow.classList.add('learned-row');
+                        else lRow.classList.remove('learned-row');
+                    }
+                });
             };
 
             // Unit Toggle Logic
@@ -585,7 +603,7 @@ function renderTable(groups) {
                     
                     // Lesson Header
                     const lessonRow = document.createElement('tr');
-                    lessonRow.className = `chapter-header lesson-header-${unitId}`; // Re-use chapter-header style but add specific class
+                    lessonRow.className = `chapter-header lesson-header-${unitId} lesson-header-row`; // Added consolidated style class
                     lessonRow.setAttribute('data-lesson-id', lessonId);
                     lessonRow.style.cursor = 'pointer';
                     lessonRow.style.display = 'none'; // Hidden by default (Unit closed)
@@ -598,7 +616,7 @@ function renderTable(groups) {
                          <td style="text-align: center; width: 40px; background: rgba(0,0,0,0.02);">
                              <input type="checkbox" class="lesson-checkbox-${unitId}" title="Mark Lesson as Learned" ${isLessonFullyLearned ? 'checked' : ''}>
                          </td>
-                        <td colspan="6" style="padding-left: 30px; border-left: 4px solid var(--theme-primary);">
+                        <td colspan="6" class="lesson-header-cell">
                             <span class="toggle-icon" style="display:inline-block; transition: transform 0.2s; margin-right: 8px;">▶</span>
                             ${subGroup.title}
                             <span style="float:right; font-size: 0.8em; opacity: 0.7;">${subGroup.words.length} words</span>
@@ -610,10 +628,18 @@ function renderTable(groups) {
                     const lessonCb = lessonRow.querySelector('input[type="checkbox"]');
                     lessonCb.onclick = (e) => {
                         e.stopPropagation();
-                        updateLearnedList(lessonHanzis, e.target.checked);
-                        // Optional: Check if all lessons are now checked -> check unit?
-                        // Simple logic for now.
+                        const isChecked = e.target.checked;
+                        updateLearnedList(lessonHanzis, isChecked);
+                        
+                        // Update visual style
+                        if(isChecked) lessonRow.classList.add('learned-row');
+                        else lessonRow.classList.remove('learned-row');
                     };
+                    
+                    // Initial State Class
+                    if(isLessonFullyLearned) {
+                         lessonRow.classList.add('learned-row');
+                    }
 
                     // Lesson Toggle Logic
                     lessonRow.addEventListener('click', (e) => {
@@ -690,13 +716,17 @@ function renderTable(groups) {
     });
 
     // Helper to render word rows
-    function renderWords(words, classId, container, learnedList, total) {
+    // We pass learnedWords by reference? No, we need it to update the MAIN list.
+    // Instead of passing a static array, let's use the getter or closure if defined inside.
+    // Since this function is defined inside, let's use the outer scope 'learnedWords'.
+    function renderWords(words, classId, container) {
 
         if (!words) return;
         
         words.forEach(word => {
             const row = document.createElement('tr');
-            const isLearned = learnedList.includes(word.hanzi);
+            // Check against current state, not captured state
+            const isLearned = learnedWords.includes(word.hanzi);
 
             // Classes
             if (isLearned) row.classList.add('learned-row');
@@ -712,7 +742,9 @@ function renderTable(groups) {
                 sentenceHtml = `<div class="sentence-block"><div class="cn">${word.sentence}</div><div class="py">${word.sentence_pinyin || ''}</div><div class="en">${word.sentence_meaning || ''}</div></div>`;
             }
             const reportBtnHtml = `<button class="report-btn" title="Report mistake">⚑</button>`;
-            const checkboxHtml = `<input type="checkbox" class="learned-checkbox" ${isLearned ? 'checked' : ''} aria-label="Mark as learned">`;
+            
+            // Checkbox: add data attribute for easy finding
+            const checkboxHtml = `<input type="checkbox" class="learned-checkbox" ${isLearned ? 'checked' : ''} aria-label="Mark as learned" data-hanzi="${word.hanzi}">`;
 
             row.innerHTML = `
                 <td style="text-align:center;">${checkboxHtml}</td>
@@ -730,16 +762,27 @@ function renderTable(groups) {
             // Events
             const checkbox = row.querySelector('.learned-checkbox');
             checkbox.addEventListener('change', (e) => {
+                const hanzi = word.hanzi;
                 if (e.target.checked) {
-                    learnedList.push(word.hanzi);
+                    if (!learnedWords.includes(hanzi)) {
+                        learnedWords.push(hanzi);
+                    }
                     row.classList.add('learned-row');
                 } else {
-                    const idx = learnedList.indexOf(word.hanzi);
-                    if (idx > -1) learnedList.splice(idx, 1);
+                    const idx = learnedWords.indexOf(hanzi);
+                    if (idx > -1) {
+                        learnedWords.splice(idx, 1);
+                    }
                     row.classList.remove('learned-row');
                 }
-                saveLearnedWords(level, [...new Set(learnedList)]);
-                updateProgressDisplay(learnedList.length, total);
+                
+                // Save & Update
+                saveLearnedWords(level, learnedWords);
+                updateProgressDisplay(learnedWords.length, totalWords);
+                
+                // Trigger the header check logic to uncheck bulk boxes if needed
+                // We can extract that logic to a helper function since we need it in two places now
+                updateHeaderStates(); 
             });
             
              const btn = row.querySelector('.report-btn');
@@ -757,6 +800,82 @@ function renderTable(groups) {
         if (classId) {
              renderFooter(classId, -1, container); // index -1 because scroll logic differs or we skip
         }
+    }
+
+    // New Helper: Update Header States (Extracted from updateLearnedList)
+    function updateHeaderStates() {
+        // 1. Check Lessons (Sub-groups)
+        document.querySelectorAll('.lesson-header-row').forEach(lessonRow => {
+            const lessonId = lessonRow.getAttribute('data-lesson-id');
+            if (!lessonId) return;
+            
+            const wordRows = document.querySelectorAll(`.${lessonId}`);
+            if (wordRows.length === 0) return;
+
+            let isFullyLearned = true;
+            wordRows.forEach(r => {
+                if (!r.classList.contains('learned-row')) isFullyLearned = false;
+            });
+
+            const cb = lessonRow.querySelector('input[type="checkbox"]');
+            if (cb) cb.checked = isFullyLearned;
+            
+            if (isFullyLearned) lessonRow.classList.add('learned-row');
+            else lessonRow.classList.remove('learned-row');
+        });
+
+        // 2. Check Units (Parent groups)
+        document.querySelectorAll('.unit-header').forEach(unitRow => {
+            let allLessonsLearned = true;
+            let foundLessons = false;
+            let sibling = unitRow.nextElementSibling;
+            
+            while (sibling) {
+                if (sibling.classList.contains('unit-header')) break; 
+                
+                if (sibling.classList.contains('lesson-header-row')) {
+                    foundLessons = true;
+                    if (!sibling.classList.contains('learned-row')) {
+                        allLessonsLearned = false;
+                    }
+                }
+                sibling = sibling.nextElementSibling;
+            }
+            
+            if (foundLessons) {
+                const cb = unitRow.querySelector('.unit-checkbox');
+                if (cb) cb.checked = allLessonsLearned;
+                
+                if (allLessonsLearned) unitRow.classList.add('learned-row');
+                else unitRow.classList.remove('learned-row');
+            }
+        });
+        
+        // 3. Check Chapters (Flat structure)
+        document.querySelectorAll('.chapter-header:not(.lesson-header-row)').forEach(chapRow => {
+             let allWordsLearned = true;
+             let foundWords = false;
+             let sibling = chapRow.nextElementSibling;
+
+             while (sibling) {
+                 if (sibling.classList.contains('chapter-header') || sibling.classList.contains('unit-header')) break;
+                 
+                 if (sibling.querySelector('.learned-checkbox')) {
+                     foundWords = true;
+                     if(!sibling.classList.contains('learned-row')) {
+                         allWordsLearned = false;
+                     }
+                 }
+                 sibling = sibling.nextElementSibling;
+             }
+
+             if (foundWords) {
+                 const cb = chapRow.querySelector('.chapter-checkbox');
+                 if (cb) cb.checked = allWordsLearned;
+                 if (allWordsLearned) chapRow.classList.add('learned-row');
+                 else chapRow.classList.remove('learned-row');
+             }
+        });
     }
 
     function renderFooter(groupId, headerIndex, container) {
