@@ -1868,6 +1868,151 @@
           ]
         }
       }
+    },
+    "4": {
+      "title": "Unit 4",
+      "lessons": {
+        "1": {
+          "title": "Lesson 1",
+          "words": [
+            {
+              "hanzi": "质量",
+              "pinyin": "zhìliàng",
+              "pos": "n.",
+              "meaning": "quality"
+            },
+            {
+              "hanzi": "亲戚",
+              "pinyin": "qīnqi",
+              "pos": "n.",
+              "meaning": "relative"
+            },
+            {
+              "hanzi": "从来",
+              "pinyin": "cónglái",
+              "pos": "adv.",
+              "meaning": "right from the beginning, all along"
+            },
+            {
+              "hanzi": "孙子",
+              "pinyin": "sūnzi",
+              "pos": "n.",
+              "meaning": "grandson"
+            },
+            {
+              "hanzi": "改变",
+              "pinyin": "gǎibiàn",
+              "pos": "v./n.",
+              "meaning": "change"
+            },
+            {
+              "hanzi": "秒",
+              "pinyin": "miǎo",
+              "pos": "measure word",
+              "meaning": "second"
+            },
+            {
+              "hanzi": "复杂",
+              "pinyin": "fùzá",
+              "pos": "adj.",
+              "meaning": "complicated, complex"
+            },
+            {
+              "hanzi": "打折",
+              "pinyin": "dǎzhé",
+              "pos": "v.",
+              "meaning": "give a discount"
+            },
+            {
+              "hanzi": "躺",
+              "pinyin": "tǎng",
+              "pos": "v.",
+              "meaning": "lie down; recline"
+            },
+            {
+              "hanzi": "内容",
+              "pinyin": "nèiróng",
+              "pos": "n.",
+              "meaning": "content"
+            },
+            {
+              "hanzi": "抽烟",
+              "pinyin": "chōuyān",
+              "pos": "v.",
+              "meaning": "smoke a cigarette"
+            },
+            {
+              "hanzi": "饺子",
+              "pinyin": "jiǎozi",
+              "pos": "n.",
+              "meaning": "jiaozi, dumpling"
+            },
+            {
+              "hanzi": "错误",
+              "pinyin": "cuòwù",
+              "pos": "n.",
+              "meaning": "mistake"
+            },
+            {
+              "hanzi": "梦",
+              "pinyin": "mèng",
+              "pos": "n.",
+              "meaning": "dream"
+            },
+            {
+              "hanzi": "词语",
+              "pinyin": "cíyǔ",
+              "pos": "n.",
+              "meaning": "words"
+            },
+            {
+              "hanzi": "母亲",
+              "pinyin": "mǔqīn",
+              "pos": "n.",
+              "meaning": "mother"
+            },
+            {
+              "hanzi": "经济",
+              "pinyin": "jīngjì",
+              "pos": "n.",
+              "meaning": "economy"
+            },
+            {
+              "hanzi": "父亲",
+              "pinyin": "fùqīn",
+              "pos": "n.",
+              "meaning": "father"
+            }
+          ]
+        },
+        "2": { 
+          "title": "Lesson 2", 
+          "words": [
+            { "hanzi": "讨论", "pinyin": "tǎolùn", "pos": "v.", "meaning": "discuss, talk about, debate" },
+            { "hanzi": "正确", "pinyin": "zhèngquè", "pos": "adj.", "meaning": "right, correct, proper" },
+            { "hanzi": "弹钢琴", "pinyin": "tángāngqín", "pos": "v.", "meaning": "play the piano" },
+            { "hanzi": "重点", "pinyin": "zhòngdiǎn", "pos": "n.", "meaning": "key point" },
+            { "hanzi": "乒乓球", "pinyin": "pīngpāngqiú", "pos": "n.", "meaning": "table tennis" },
+            { "hanzi": "语法", "pinyin": "yǔfǎ", "pos": "n.", "meaning": "grammar" },
+            { "hanzi": "感情", "pinyin": "gǎnqíng", "pos": "n.", "meaning": "emotion, feelings (between 2 people)" },
+            { "hanzi": "倒", "pinyin": "dào", "pos": "v.", "meaning": "to tip; to pour" },
+            { "hanzi": "成为", "pinyin": "chéngwéi", "pos": "v.", "meaning": "become" },
+            { "hanzi": "保护", "pinyin": "bǎohù", "pos": "v.", "meaning": "protect" },
+            { "hanzi": "挂", "pinyin": "guà", "pos": "v.", "meaning": "hang up (telephone)" },
+            { "hanzi": "抱", "pinyin": "bào", "pos": "v.", "meaning": "embrace, hold in one's arms" },
+            { "hanzi": "照", "pinyin": "zhào", "pos": "v.", "meaning": "shine, reflect, look (in the mirror)" },
+            { "hanzi": "答案", "pinyin": "dá'àn", "pos": "n.", "meaning": "answer" },
+            { "hanzi": "效果", "pinyin": "xiàoguǒ", "pos": "n.", "meaning": "effect, result, outcome" },
+            { "hanzi": "流利", "pinyin": "liúlì", "pos": "adj.", "meaning": "fluent" },
+            { "hanzi": "行", "pinyin": "xíng", "pos": "v./adj.", "meaning": "Ok, all right, be all right, good" },
+            { "hanzi": "预习", "pinyin": "yùxí", "pos": "v.", "meaning": "preview" }
+          ] 
+        },
+        "3": { "title": "Lesson 3", "words": [] },
+        "4": { "title": "Lesson 4", "words": [] },
+        "5": { "title": "Lesson 5", "words": [] },
+        "6": { "title": "Lesson 6", "words": [] }
+      }
     }
   }
 }
