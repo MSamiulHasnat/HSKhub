@@ -2008,7 +2008,29 @@
             { "hanzi": "预习", "pinyin": "yùxí", "pos": "v.", "meaning": "preview" }
           ] 
         },
-        "3": { "title": "Lesson 3", "words": [] },
+        "3": { 
+          "title": "Lesson 3", 
+          "words": [
+            { "hanzi": "叶子", "pinyin": "yèzi", "pos": "n.", "meaning": "leaf" },
+            { "hanzi": "证明", "pinyin": "zhèngmíng", "pos": "v./n.", "meaning": "certify, testify, prove, certificate" },
+            { "hanzi": "棵", "pinyin": "kē", "pos": "measure word", "meaning": "measure word for plants" },
+            { "hanzi": "研究", "pinyin": "yánjiū", "pos": "v.", "meaning": "research" },
+            { "hanzi": "登机牌", "pinyin": "dēngjīpái", "pos": "n.", "meaning": "boarding pass" },
+            { "hanzi": "表演", "pinyin": "biǎoyǎn", "pos": "v.", "meaning": "act, perform" },
+            { "hanzi": "香", "pinyin": "xiāng", "pos": "adj.", "meaning": "delicious, appetizing, fragrant" },
+            { "hanzi": "放松", "pinyin": "fàngsōng", "pos": "v.", "meaning": "relax" },
+            { "hanzi": "到处", "pinyin": "dàochù", "pos": "adv.", "meaning": "everywhere" },
+            { "hanzi": "吃惊", "pinyin": "chījīng", "pos": "v.", "meaning": "be shocked, be amazed" },
+            { "hanzi": "节", "pinyin": "jié", "pos": "measure word", "meaning": "measure word for class, lesson" },
+            { "hanzi": "方式", "pinyin": "fāngshì", "pos": "n.", "meaning": "method, manner" },
+            { "hanzi": "大使馆", "pinyin": "dàshǐguǎn", "pos": "n.", "meaning": "embassy" },
+            { "hanzi": "超过", "pinyin": "chāoguò", "pos": "v.", "meaning": "exceed" },
+            { "hanzi": "地址", "pinyin": "dìzhǐ", "pos": "n.", "meaning": "address" },
+            { "hanzi": "调查", "pinyin": "diàochá", "pos": "v./n.", "meaning": "investigate, survey" },
+            { "hanzi": "省", "pinyin": "shěng", "pos": "n.", "meaning": "province" },
+            { "hanzi": "老虎", "pinyin": "lǎohǔ", "pos": "n.", "meaning": "tiger" }
+          ] 
+        },
         "4": { "title": "Lesson 4", "words": [] },
         "5": { "title": "Lesson 5", "words": [] },
         "6": { "title": "Lesson 6", "words": [] }
