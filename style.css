@@ -403,7 +403,10 @@ tbody tr:last-of-type td {
 .hanzi-main {
     font-family: var(--font-cn);
     font-size: 1.4rem;
-    font-weight: bold;
+    font-weight: normal;
+    -webkit-font-smoothing: none;
+    -moz-osx-font-smoothing: grayscale;
+    font-smooth: never;
 }
 /* Chapter Header in Table */
 .chapter-header td {
