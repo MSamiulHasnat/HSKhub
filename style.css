@@ -14,7 +14,8 @@
     --theme-bg-alpha: rgba(211, 47, 47, 0.1);
 
     --font-ui: 'Poppins', 'Segoe UI', Tahoma, sans-serif;
-    --font-cn: 'Noto Sans SC', sans-serif;
+    /* Use Songti / SimSun for academic Chinese look, fallback to modern Sans if unavailable */
+    --font-cn: 'Songti SC', 'SimSun', 'STSong', 'Noto Serif SC', 'Times New Roman', serif;
 }
 
 /* --- Color Schemes --- */
