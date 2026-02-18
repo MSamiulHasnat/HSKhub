@@ -2031,7 +2031,29 @@
             { "hanzi": "老虎", "pinyin": "lǎohǔ", "pos": "n.", "meaning": "tiger" }
           ] 
         },
-        "4": { "title": "Lesson 4", "words": [] },
+        "4": {
+          "title": "Lesson 4",
+          "words": [
+            { "hanzi": "及时", "pinyin": "jíshí", "pos": "adv./adj.", "meaning": "promptly, in time, timely, the right time" },
+            { "hanzi": "数字", "pinyin": "shùzì", "pos": "n.", "meaning": "number" },
+            { "hanzi": "其次", "pinyin": "qícì", "pos": "pron.", "meaning": "secondly; next; then" },
+            { "hanzi": "技术", "pinyin": "jìshù", "pos": "n.", "meaning": "technology; skills" },
+            { "hanzi": "胳膊", "pinyin": "gēbo", "pos": "n.", "meaning": "arm" },
+            { "hanzi": "正式", "pinyin": "zhèngshì", "pos": "adj.", "meaning": "formal, official, regular" },
+            { "hanzi": "参观", "pinyin": "cānguān", "pos": "v.", "meaning": "visit" },
+            { "hanzi": "顾客", "pinyin": "gùkè", "pos": "n.", "meaning": "customer" },
+            { "hanzi": "演员", "pinyin": "yǎnyuán", "pos": "n.", "meaning": "actor or actress" },
+            { "hanzi": "提供", "pinyin": "tígōng", "pos": "v.", "meaning": "provide, supply, offer" },
+            { "hanzi": "大夫", "pinyin": "dàifu", "pos": "n.", "meaning": "doctor, physician" },
+            { "hanzi": "咳嗽", "pinyin": "késou", "pos": "v.", "meaning": "cough" },
+            { "hanzi": "难受", "pinyin": "nánshòu", "pos": "adj.", "meaning": "feel unhappy, difficult to bear" },
+            { "hanzi": "打针", "pinyin": "dǎzhēn", "pos": "v.", "meaning": "give or have an injection" },
+            { "hanzi": "正常", "pinyin": "zhèngcháng", "pos": "adj.", "meaning": "normal; regular" },
+            { "hanzi": "汗", "pinyin": "hàn", "pos": "n.", "meaning": "sweat" },
+            { "hanzi": "护士", "pinyin": "hùshi", "pos": "n.", "meaning": "nurse" },
+            { "hanzi": "死", "pinyin": "sǐ", "pos": "v.", "meaning": "to die" }
+          ]
+        },
         "5": { "title": "Lesson 5", "words": [] },
         "6": { "title": "Lesson 6", "words": [] }
       }
