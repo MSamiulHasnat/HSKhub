@@ -29,6 +29,10 @@
     <header class="hero">
         <div class="container">
             <h1>HSK Level <span id="level-display"></span> Vocabulary</h1>
+            <div class="search-container">
+                <input type="text" id="global-search" placeholder="Search hanzi, pinyin, or meaning..." autocomplete="off">
+                <div id="search-results" class="search-results"></div>
+            </div>
             <p><a href="index.html" style="color: var(--white); text-decoration: underline;">&larr; Back to Home</a></p>
         </div>
     </header>
@@ -75,5 +79,6 @@
     <button id="back-to-top" title="Go to top">↑</button>
 
     <script src="app.js"></script>
+    <script src="search.js"></script>
 </body>
 </html>

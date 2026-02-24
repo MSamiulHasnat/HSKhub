@@ -899,6 +899,87 @@ function renderTable(groups) {
     }
 
     initScrollToTop();
+    highlightFromSearch();
+}
+
+// Highlight a word row when navigated from search (via ?highlight= param)
+function highlightFromSearch() {
+    const params = new URLSearchParams(window.location.search);
+    const target = params.get('highlight');
+    if (!target) return;
+
+    // Find the row with matching hanzi
+    const rows = document.querySelectorAll('.hanzi-main');
+    let matchRow = null;
+    for (const span of rows) {
+        if (span.textContent === target) {
+            matchRow = span.closest('tr');
+            break;
+        }
+    }
+    if (!matchRow) return;
+
+    // Expand parent groups so the row becomes visible
+    const classListArr = Array.from(matchRow.classList);
+    // The row has class like "chapter-group-X" or "unit-Y-lesson-Z" which links it to its header
+    const groupClass = classListArr.find(c => c.startsWith('chapter-group-') || c.includes('-lesson-'));
+
+    if (groupClass) {
+        // Make the row visible
+        matchRow.style.display = 'table-row';
+
+        // Also show all sibling rows in the same group
+        document.querySelectorAll('.' + groupClass).forEach(r => {
+            r.style.display = 'table-row';
+        });
+
+        // Find the header row for this group and rotate its toggle icon
+        const allHeaders = document.querySelectorAll('.chapter-header, .lesson-header-row');
+        for (const header of allHeaders) {
+            const lessonId = header.getAttribute('data-lesson-id');
+            // Check if this header controls the group (lesson headers have data-lesson-id matching the class)
+            if (lessonId && lessonId === groupClass) {
+                header.style.display = 'table-row';
+                const icon = header.querySelector('.toggle-icon');
+                if (icon) icon.style.transform = 'rotate(90deg)';
+            }
+            // For chapter headers, check if clicking would reveal our group
+            if (!lessonId) {
+                const nextSib = header.nextElementSibling;
+                if (nextSib && nextSib.classList.contains(groupClass)) {
+                    const icon = header.querySelector('.toggle-icon');
+                    if (icon) icon.style.transform = 'rotate(90deg)';
+                }
+            }
+        }
+
+        // For nested structure (unit > lesson), also expand the parent unit
+        if (groupClass.includes('-lesson-')) {
+            // groupClass is like "unit-0-lesson-1", parent unit class prefix is "unit-0"
+            const unitPrefix = groupClass.split('-lesson-')[0]; // "unit-0"
+            // Show all lesson headers belonging to this unit
+            document.querySelectorAll(`.lesson-header-${unitPrefix}`).forEach(lh => {
+                lh.style.display = 'table-row';
+            });
+            // Rotate the unit header icon
+            const unitHeaders = document.querySelectorAll('.unit-header');
+            unitHeaders.forEach(uh => {
+                const icon = uh.querySelector('.toggle-icon');
+                const nextSib = uh.nextElementSibling;
+                if (nextSib && nextSib.classList.contains(`lesson-header-${unitPrefix}`)) {
+                    if (icon) icon.style.transform = 'rotate(90deg)';
+                }
+            });
+        }
+    }
+
+    // Scroll and highlight
+    setTimeout(() => {
+        matchRow.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        matchRow.classList.add('search-highlight-row');
+        // Remove highlight class after animation
+        setTimeout(() => matchRow.classList.remove('search-highlight-row'), 3000);
+    }, 300);
 }
 
 function updateProgressDisplay(learnedCount, totalCount) {

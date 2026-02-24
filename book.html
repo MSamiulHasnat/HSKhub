@@ -236,6 +236,10 @@
         <div class="container">
             <h1 id="book-title">HSK Standard Course</h1>
             <p class="tagline">Interactive Reader</p>
+            <div class="search-container">
+                <input type="text" id="global-search" placeholder="Search hanzi, pinyin, or meaning..." autocomplete="off">
+                <div id="search-results" class="search-results"></div>
+            </div>
             <p>
                 <a href="index.html" style="color: var(--white); text-decoration: underline; margin-right: 15px;">&larr; Back to Home</a>
                 <a href="level.html?level=4" style="color: var(--white); text-decoration: underline;">&larr; Back to Vocabulary List</a>
@@ -287,5 +291,6 @@
 
     <!-- Reusing App Logic + New Reader Logic -->
     <script src="reader.js"></script>
+    <script src="search.js"></script>
 </body>
 </html>
