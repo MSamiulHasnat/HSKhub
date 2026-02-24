@@ -2054,8 +2054,52 @@
             { "hanzi": "死", "pinyin": "sǐ", "pos": "v.", "meaning": "to die" }
           ]
         },
-        "5": { "title": "Lesson 5", "words": [] },
-        "6": { "title": "Lesson 6", "words": [] }
+        "5": {
+          "title": "Lesson 5",
+          "words": [
+            { "hanzi": "硕士", "pinyin": "shuòshì", "pos": "n.", "meaning": "master's (degree)" },
+            { "hanzi": "出差", "pinyin": "chūchāi", "pos": "v.", "meaning": "be on a business trip" },
+            { "hanzi": "警察", "pinyin": "jǐngchá", "pos": "n.", "meaning": "police" },
+            { "hanzi": "仔细", "pinyin": "zǐxì", "pos": "adj.", "meaning": "careful, attentive" },
+            { "hanzi": "对话", "pinyin": "duìhuà", "pos": "v./n.", "meaning": "hold a dialogue, have a conversation, conversation, dialogue" },
+            { "hanzi": "友好", "pinyin": "yǒuhǎo", "pos": "adj.", "meaning": "friendly, amicable" },
+            { "hanzi": "弄", "pinyin": "nòng", "pos": "v.", "meaning": "do, manage, handle" },
+            { "hanzi": "并且", "pinyin": "bìngqiě", "pos": "conj.", "meaning": "besides, furthermore, in addition" },
+            { "hanzi": "马虎", "pinyin": "mǎhu", "pos": "adj.", "meaning": "careless, sloppy" },
+            { "hanzi": "对面", "pinyin": "duìmiàn", "pos": "n.", "meaning": "the opposite side" },
+            { "hanzi": "国籍", "pinyin": "guójí", "pos": "n.", "meaning": "nationality" },
+            { "hanzi": "交通", "pinyin": "jiāotōng", "pos": "n.", "meaning": "traffic" },
+            { "hanzi": "永远", "pinyin": "yǒngyuǎn", "pos": "adv.", "meaning": "forever" },
+            { "hanzi": "乘坐", "pinyin": "chéngzuò", "pos": "v.", "meaning": "ride, take (a bus, train, airplane, ship)" },
+            { "hanzi": "幽默", "pinyin": "yōumò", "pos": "adj.", "meaning": "humor, funny" },
+            { "hanzi": "互联网", "pinyin": "hùliánwǎng", "pos": "n.", "meaning": "internet" },
+            { "hanzi": "儿童", "pinyin": "értóng", "pos": "n.", "meaning": "child, children" },
+            { "hanzi": "回忆", "pinyin": "huíyì", "pos": "v./n.", "meaning": "recollect, recall, memory" }
+          ]
+        },
+        "6": {
+          "title": "Lesson 6",
+          "words": [
+            { "hanzi": "眼镜", "pinyin": "yǎnjìng", "pos": "n.", "meaning": "glasses" },
+            { "hanzi": "真正", "pinyin": "zhēnzhèng", "pos": "adj.", "meaning": "genuine, authentic, real" },
+            { "hanzi": "地球", "pinyin": "dìqiú", "pos": "n.", "meaning": "the earth, the globe" },
+            { "hanzi": "距离", "pinyin": "jùlí", "pos": "n.", "meaning": "distance" },
+            { "hanzi": "工资", "pinyin": "gōngzī", "pos": "n.", "meaning": "salary, wage" },
+            { "hanzi": "存", "pinyin": "cún", "pos": "v.", "meaning": "deposit" },
+            { "hanzi": "签证", "pinyin": "qiānzhèng", "pos": "n.", "meaning": "visa" },
+            { "hanzi": "台", "pinyin": "tái", "pos": "measure word", "meaning": "measure word for machines" },
+            { "hanzi": "付款", "pinyin": "fùkuǎn", "pos": "v.", "meaning": "pay a sum of money" },
+            { "hanzi": "出生", "pinyin": "chūshēng", "pos": "v.", "meaning": "be born" },
+            { "hanzi": "丢", "pinyin": "diū", "pos": "v.", "meaning": "lose" },
+            { "hanzi": "性别", "pinyin": "xìngbié", "pos": "n.", "meaning": "gender" },
+            { "hanzi": "民族", "pinyin": "mínzú", "pos": "n.", "meaning": "ethnic group" },
+            { "hanzi": "修理", "pinyin": "xiūlǐ", "pos": "v.", "meaning": "repair" },
+            { "hanzi": "目的", "pinyin": "mùdì", "pos": "n.", "meaning": "purpose, aim" },
+            { "hanzi": "例如", "pinyin": "lìrú", "pos": "v.", "meaning": "for example" },
+            { "hanzi": "反对", "pinyin": "fǎnduì", "pos": "v.", "meaning": "be against, object to" },
+            { "hanzi": "友谊", "pinyin": "yǒuyì", "pos": "n.", "meaning": "friendship" }
+          ]
+        }
       }
     }
   }
