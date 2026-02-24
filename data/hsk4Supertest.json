@@ -2101,6 +2101,54 @@
           ]
         }
       }
+    },
+    "5": {
+      "title": "Unit 5",
+      "lessons": {
+        "1": {
+          "title": "Lesson 1",
+          "words": [
+            { "hanzi": "好处", "pinyin": "hǎochu", "pos": "n.", "meaning": "benefit, advantage" },
+            { "hanzi": "现金", "pinyin": "xiànjīn", "pos": "n.", "meaning": "cash" },
+            { "hanzi": "全部", "pinyin": "quánbù", "pos": "adv./n./adj.", "meaning": "whole, all" },
+            { "hanzi": "恐怕", "pinyin": "kǒngpà", "pos": "adv.", "meaning": "I'm afraid, perhaps" },
+            { "hanzi": "部分", "pinyin": "bùfen", "pos": "n.", "meaning": "part, section" },
+            { "hanzi": "郊区", "pinyin": "jiāoqū", "pos": "n.", "meaning": "suburbs" },
+            { "hanzi": "桥", "pinyin": "qiáo", "pos": "n.", "meaning": "bridge" },
+            { "hanzi": "社会", "pinyin": "shèhuì", "pos": "n.", "meaning": "society" },
+            { "hanzi": "轻", "pinyin": "qīng", "pos": "adj.", "meaning": "light, easy" },
+            { "hanzi": "赚", "pinyin": "zhuàn", "pos": "v.", "meaning": "earn (money), make a profit" },
+            { "hanzi": "富", "pinyin": "fù", "pos": "adj.", "meaning": "wealthy, rich" },
+            { "hanzi": "受不了", "pinyin": "shòubuliǎo", "pos": "v.", "meaning": "can't bear, can't stand" },
+            { "hanzi": "干", "pinyin": "gàn", "pos": "v.", "meaning": "do, work" },
+            { "hanzi": "空", "pinyin": "kōng", "pos": "adj.", "meaning": "empty" },
+            { "hanzi": "符合", "pinyin": "fúhé", "pos": "v.", "meaning": "correspond with, conform to" },
+            { "hanzi": "生命", "pinyin": "shēngmìng", "pos": "n.", "meaning": "life" },
+            { "hanzi": "国际", "pinyin": "guójì", "pos": "adj.", "meaning": "international" },
+            { "hanzi": "失望", "pinyin": "shīwàng", "pos": "adj.", "meaning": "disappointed" }
+          ]
+        },
+        "2": {
+          "title": "Lesson 2",
+          "words": []
+        },
+        "3": {
+          "title": "Lesson 3",
+          "words": []
+        },
+        "4": {
+          "title": "Lesson 4",
+          "words": []
+        },
+        "5": {
+          "title": "Lesson 5",
+          "words": []
+        },
+        "6": {
+          "title": "Lesson 6",
+          "words": []
+        }
+      }
     }
   }
 }
