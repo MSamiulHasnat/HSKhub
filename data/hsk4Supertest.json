@@ -617,16 +617,70 @@
         "4": {
           "title": "Lesson 4",
           "words": [
+            {"hanzi": "学期", "pinyin": "xuéqī", "pos": "n.", "meaning": "semester"},
+            {"hanzi": "严重", "pinyin": "yánzhòng", "pos": "adj.", "meaning": "serious, severe"},
+            {"hanzi": "气候", "pinyin": "qìhòu", "pos": "n.", "meaning": "climate"},
+            {"hanzi": "留", "pinyin": "liú", "pos": "v.", "meaning": "stay"},
+            {"hanzi": "穷", "pinyin": "qióng", "pos": "adj.", "meaning": "poor"},
+            {"hanzi": "海洋", "pinyin": "hǎiyáng", "pos": "n.", "meaning": "ocean"},
+            {"hanzi": "准确", "pinyin": "zhǔnquè", "pos": "adj.", "meaning": "exact, precise"},
+            {"hanzi": "暖和", "pinyin": "nuǎnhuo", "pos": "adj.", "meaning": "warm"},
+            {"hanzi": "酸", "pinyin": "suān", "pos": "adj.", "meaning": "sour, ache"},
+            {"hanzi": "世纪", "pinyin": "shìjì", "pos": "n.", "meaning": "century"},
+            {"hanzi": "将来", "pinyin": "jiānglái", "pos": "n.", "meaning": "later, in the future"},
+            {"hanzi": "发生", "pinyin": "fāshēng", "pos": "v.", "meaning": "happen, occur, take place"},
+            {"hanzi": "兴奋", "pinyin": "xīngfèn", "pos": "adj.", "meaning": "excited"},
+            {"hanzi": "到底", "pinyin": "dàodǐ", "pos": "adv.", "meaning": "really, actually, in the end, after all"},
+            {"hanzi": "当时", "pinyin": "dāngshí", "pos": "n.", "meaning": "at that time, then"},
+            {"hanzi": "浪漫", "pinyin": "làngmàn", "pos": "adj.", "meaning": "romantic"},
+            {"hanzi": "总结", "pinyin": "zǒngjié", "pos": "v./n.", "meaning": "summary, sum up"},
+            {"hanzi": "信封", "pinyin": "xìnfēng", "pos": "n.", "meaning": "envelope"}
           ]
         },
         "5": {
           "title": "Lesson 5",
           "words": [
+            {"hanzi": "竟然", "pinyin": "jìngrán", "pos": "adv.", "meaning": "unexpectedly"},
+            {"hanzi": "合适", "pinyin": "héshì", "pos": "adj.", "meaning": "fit, suitable, appropriate"},
+            {"hanzi": "科学", "pinyin": "kēxué", "pos": "n.", "meaning": "science"},
+            {"hanzi": "经验", "pinyin": "jīngyàn", "pos": "n.", "meaning": "experience"},
+            {"hanzi": "观众", "pinyin": "guānzhòng", "pos": "n.", "meaning": "audience"},
+            {"hanzi": "经历", "pinyin": "jīnglì", "pos": "v./n.", "meaning": "experience, go through"},
+            {"hanzi": "首先", "pinyin": "shǒuxiān", "pos": "pron.", "meaning": "first of all, to start"},
+            {"hanzi": "著名", "pinyin": "zhùmíng", "pos": "adj.", "meaning": "famous, celebrated"},
+            {"hanzi": "接着", "pinyin": "jiēzhe", "pos": "adv.", "meaning": "then, after"},
+            {"hanzi": "理解", "pinyin": "lǐjiě", "pos": "v.", "meaning": "understand"},
+            {"hanzi": "骄傲", "pinyin": "jiāo'ào", "pos": "adj.", "meaning": "proud, conceited"},
+            {"hanzi": "准时", "pinyin": "zhǔnshí", "pos": "adj.", "meaning": "on time, punctually"},
+            {"hanzi": "按时", "pinyin": "ànshí", "pos": "adv.", "meaning": "on time, on schedule"},
+            {"hanzi": "可惜", "pinyin": "kěxī", "pos": "adj.", "meaning": "it's a pity"},
+            {"hanzi": "打招呼", "pinyin": "dǎ zhāohu", "pos": "phrase", "meaning": "greet"},
+            {"hanzi": "与", "pinyin": "yǔ", "pos": "prep./conj.", "meaning": "with, against, and"},
+            {"hanzi": "原来", "pinyin": "yuánlái", "pos": "adv./adj.", "meaning": "former, original"},
+            {"hanzi": "许多", "pinyin": "xǔduō", "pos": "quantifier", "meaning": "many, a lot, much"}
           ]
         },
         "6": {
           "title": "Lesson 6",
           "words": [
+            {"hanzi": "活泼", "pinyin": "huópō", "pos": "adj.", "meaning": "lively"},
+            {"hanzi": "信心", "pinyin": "xìnxīn", "pos": "n.", "meaning": "confidence, faith"},
+            {"hanzi": "可怜", "pinyin": "kělián", "pos": "adj.", "meaning": "pitiful, poor"},
+            {"hanzi": "自信", "pinyin": "zìxìn", "pos": "adj.", "meaning": "confident"},
+            {"hanzi": "周围", "pinyin": "zhōuwéi", "pos": "n.", "meaning": "around, surrounding, surroundings"},
+            {"hanzi": "帅", "pinyin": "shuài", "pos": "adj.", "meaning": "handsome (for a man)"},
+            {"hanzi": "故意", "pinyin": "gùyì", "pos": "adv.", "meaning": "intentionally, deliberately"},
+            {"hanzi": "奖金", "pinyin": "jiǎngjīn", "pos": "n.", "meaning": "prize, award, bonus"},
+            {"hanzi": "地点", "pinyin": "dìdiǎn", "pos": "n.", "meaning": "place, site, spot"},
+            {"hanzi": "博士", "pinyin": "bóshì", "pos": "n.", "meaning": "doctor(an academic degree)"},
+            {"hanzi": "整理", "pinyin": "zhěnglǐ", "pos": "v.", "meaning": "put in order, arrange"},
+            {"hanzi": "亚洲", "pinyin": "Yàzhōu", "pos": "n.", "meaning": "Asia"},
+            {"hanzi": "究竟", "pinyin": "jiūjìng", "pos": "adv.", "meaning": "actually, exactly (used in questions to press for an exact answer)"},
+            {"hanzi": "记者", "pinyin": "jìzhě", "pos": "n.", "meaning": "reporter, journalist"},
+            {"hanzi": "收拾", "pinyin": "shōushi", "pos": "v.", "meaning": "put in order, tidy up"},
+            {"hanzi": "愉快", "pinyin": "yúkuài", "pos": "adj.", "meaning": "happy, pleased, joyful"},
+            {"hanzi": "得意", "pinyin": "déyì", "pos": "adj.", "meaning": "be pleased with oneself, pride oneself on (doing) sth"},
+            {"hanzi": "开心", "pinyin": "kāixīn", "pos": "adj.", "meaning": "happy"}
           ]
         }
       }
