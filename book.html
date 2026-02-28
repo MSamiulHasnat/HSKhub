@@ -213,6 +213,98 @@
                 margin-bottom: 2rem;
             }
         }
+
+        /* PDF Buttons */
+        .pdf-btn-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 0.5rem;
+        }
+
+        .pdf-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 24px;
+            border-radius: 25px;
+            border: 2px solid rgba(255,255,255,0.5);
+            background: rgba(255,255,255,0.15);
+            color: var(--white);
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            text-decoration: none;
+            backdrop-filter: blur(4px);
+        }
+
+        .pdf-btn:hover {
+            background: rgba(255,255,255,0.3);
+            border-color: var(--white);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .pdf-btn svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+
+        /* PDF Viewer Overlay */
+        .pdf-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.85);
+            z-index: 9999;
+            flex-direction: column;
+        }
+
+        .pdf-overlay.visible {
+            display: flex;
+        }
+
+        .pdf-overlay-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 24px;
+            background: #1a1a1a;
+            color: #fff;
+            flex-shrink: 0;
+        }
+
+        .pdf-overlay-header h3 {
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        .pdf-close-btn {
+            background: #e53935;
+            color: #fff;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .pdf-close-btn:hover {
+            background: #c62828;
+        }
+
+        .pdf-overlay iframe {
+            flex: 1;
+            width: 100%;
+            border: none;
+        }
     </style>
 </head>
 <body>
@@ -235,7 +327,16 @@
     <header class="hero" style="padding: 3rem 1rem; margin-bottom: 0;">
         <div class="container">
             <h1 id="book-title">HSK Standard Course</h1>
-            <p class="tagline">Interactive Reader</p>
+            <div class="pdf-btn-group">
+                <button class="pdf-btn" onclick="openPDF('data/HSK4 A Standard.pdf', 'HSK4 A Standard Course')">
+                    <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zM6 20V4h7v5h5v11H6z"/></svg>
+                    HSK4 A — Textbook
+                </button>
+                <button class="pdf-btn" onclick="openPDF('data/HSK4 B Standard.pdf', 'HSK4 B Standard Course')">
+                    <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zM6 20V4h7v5h5v11H6z"/></svg>
+                    HSK4 B — Textbook
+                </button>
+            </div>
             <div class="search-container">
                 <input type="text" id="global-search" placeholder="Search hanzi, pinyin, or meaning..." autocomplete="off">
                 <div id="search-results" class="search-results"></div>
@@ -289,8 +390,33 @@
         </div>
     </footer>
 
+    <!-- PDF Viewer Overlay -->
+    <div class="pdf-overlay" id="pdf-overlay">
+        <div class="pdf-overlay-header">
+            <h3 id="pdf-title">PDF Viewer</h3>
+            <button class="pdf-close-btn" onclick="closePDF()">✕ Close</button>
+        </div>
+        <iframe id="pdf-frame" src=""></iframe>
+    </div>
+
     <!-- Reusing App Logic + New Reader Logic -->
     <script src="reader.js"></script>
     <script src="search.js"></script>
+    <script>
+        function openPDF(path, title) {
+            document.getElementById('pdf-title').textContent = title;
+            document.getElementById('pdf-frame').src = path;
+            document.getElementById('pdf-overlay').classList.add('visible');
+            document.body.style.overflow = 'hidden';
+        }
+        function closePDF() {
+            document.getElementById('pdf-overlay').classList.remove('visible');
+            document.getElementById('pdf-frame').src = '';
+            document.body.style.overflow = '';
+        }
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closePDF();
+        });
+    </script>
 </body>
 </html>

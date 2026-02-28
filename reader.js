@@ -464,3 +464,38 @@ function updateVisibilityClasses() {
         }
     });
 }
+
+// --- PDF Integration ---
+function openPDF(url) {
+    const display = document.getElementById('text-display');
+    if (!display) return;
+    
+    // Clear existing content
+    display.innerHTML = '';
+    
+    // Create iframe
+    const iframe = document.createElement('iframe');
+    iframe.src = url;
+    iframe.style.width = '100%';
+    iframe.style.height = '85vh';
+    iframe.style.border = 'none';
+    iframe.style.borderRadius = '8px';
+    
+    // Update UI state
+    // 1. Deselect chapters
+    document.querySelectorAll('.chapter-item').forEach(item => item.classList.remove('active'));
+    
+    // 2. Hide Pinyin/Meaning controls as they don't apply to PDF
+    const controls = document.querySelector('.reader-controls');
+    if (controls) controls.style.display = 'none';
+
+    display.appendChild(iframe);
+}
+
+// Restore controls when loading a chapter
+// (This requires hooking into loadChapter, but loadChapter is already defined.
+// I will override it or modify it. Since I cannot easily Modify existing function middle without replacing,
+// I will modify loadChapter to show controls.
+// Since I'm appending, I can't modify the middle of loadChapter easily.
+// I'll search for loadChapter and use replace_string_in_file to add 'controls.style.display = flex'.)
+
