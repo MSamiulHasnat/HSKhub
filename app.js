@@ -187,11 +187,16 @@ function initLevelPage(level) {
             btnSupertest.textContent = 'SuperTest Version';
             btnSupertest.className = 'source-btn';
 
+            const btnAlphabetic = document.createElement('button');
+            btnAlphabetic.textContent = 'Alphabetic Wordlist';
+            btnAlphabetic.className = 'source-btn';
+
             // Interaction
             btnStandard.onclick = () => {
                 if(btnStandard.classList.contains('active')) return;
                 btnStandard.classList.add('active');
                 btnSupertest.classList.remove('active');
+                btnAlphabetic.classList.remove('active');
                 fetchVocabulary(level, ''); // Load standard
             };
 
@@ -199,11 +204,21 @@ function initLevelPage(level) {
                 if(btnSupertest.classList.contains('active')) return;
                 btnSupertest.classList.add('active');
                 btnStandard.classList.remove('active');
+                btnAlphabetic.classList.remove('active');
                 fetchVocabulary(level, 'Supertest'); // Load Supertest
+            };
+
+            btnAlphabetic.onclick = () => {
+                if(btnAlphabetic.classList.contains('active')) return;
+                btnAlphabetic.classList.add('active');
+                btnStandard.classList.remove('active');
+                btnSupertest.classList.remove('active');
+                fetchVocabulary(level, 'Alphabatic'); // Load Alphabetic
             };
 
             switchContainer.appendChild(btnStandard);
             switchContainer.appendChild(btnSupertest);
+            switchContainer.appendChild(btnAlphabetic);
             heroContainer.appendChild(switchContainer);
 
             // --- 1.b Expand/Collapse All ---
@@ -437,6 +452,20 @@ function normalizeData(data) {
                 words: unit.words || []
             };
         });
+    }
+
+    // 4. Alphabetic List (A-Z keys)
+    const keys = Object.keys(data);
+    // Check if keys look like single letters (A, B, C...)
+    // Or if simply it doesn't match above structure but has keys
+    if (keys.length > 0 && keys.every(k => k.length === 1 && /[A-Z]/.test(k))) {
+         const sortedKeys = keys.sort(); 
+         return sortedKeys.map(key => {
+             return {
+                 title: `Letter ${key}`, 
+                 words: data[key]
+             };
+         });
     }
 
     return [];
@@ -708,10 +737,7 @@ function renderTable(groups) {
             // Words
             renderWords(group.words, group.title ? groupId : '', tbody, learnedWords, totalWords);
             
-            // Footer
-             if (group.title) {
-                renderFooter(groupId, groupIndex, tbody);
-            }
+            // Footer removed here to accurate duplication (renderWords adds it)
         }
     });
 
