@@ -137,8 +137,8 @@ function initLevelPage(level) {
         levelDisplay.textContent = level;
     }
 
-    // Inject specific controls for HSK 4
-    if (level === '4') {
+    // Inject specific controls for HSK 3 and 4
+    if (['3', '4'].includes(level)) {
         const heroContainer = document.querySelector('.hero .container');
         if (heroContainer) {
             // --- 1. Wordlist Source Switcher ---
@@ -178,47 +178,52 @@ function initLevelPage(level) {
             `;
             document.head.appendChild(style);
 
-            // Buttons
-            const btnStandard = document.createElement('button');
-            btnStandard.textContent = 'Standard Course';
-            btnStandard.className = 'source-btn active';
-            
-            const btnSupertest = document.createElement('button');
-            btnSupertest.textContent = 'SuperTest Version';
-            btnSupertest.className = 'source-btn';
-
-            const btnAlphabetic = document.createElement('button');
-            btnAlphabetic.textContent = 'Alphabetic Wordlist';
-            btnAlphabetic.className = 'source-btn';
-
-            // Interaction
-            btnStandard.onclick = () => {
-                if(btnStandard.classList.contains('active')) return;
-                btnStandard.classList.add('active');
-                btnSupertest.classList.remove('active');
-                btnAlphabetic.classList.remove('active');
-                fetchVocabulary(level, ''); // Load standard
+            // Helpers to switch active state
+            const setActive = (btn) => {
+                const allBtns = switchContainer.querySelectorAll('.source-btn');
+                allBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
             };
 
-            btnSupertest.onclick = () => {
-                if(btnSupertest.classList.contains('active')) return;
-                btnSupertest.classList.add('active');
-                btnStandard.classList.remove('active');
-                btnAlphabetic.classList.remove('active');
-                fetchVocabulary(level, 'Supertest'); // Load Supertest
-            };
+            if (level === '4') {
+                const btnStandard = document.createElement('button');
+                btnStandard.textContent = 'Standard Course';
+                btnStandard.className = 'source-btn active';
+                btnStandard.dataset.variant = '';
+                btnStandard.onclick = () => { setActive(btnStandard); fetchVocabulary(level, ''); };
+                
+                const btnSupertest = document.createElement('button');
+                btnSupertest.textContent = 'SuperTest Version';
+                btnSupertest.className = 'source-btn';
+                btnSupertest.dataset.variant = 'Supertest';
+                btnSupertest.onclick = () => { setActive(btnSupertest); fetchVocabulary(level, 'Supertest'); };
 
-            btnAlphabetic.onclick = () => {
-                if(btnAlphabetic.classList.contains('active')) return;
-                btnAlphabetic.classList.add('active');
-                btnStandard.classList.remove('active');
-                btnSupertest.classList.remove('active');
-                fetchVocabulary(level, 'Alphabatic'); // Load Alphabetic
-            };
+                const btnAlphabetic = document.createElement('button');
+                btnAlphabetic.textContent = 'Alphabetic Wordlist';
+                btnAlphabetic.className = 'source-btn';
+                btnAlphabetic.dataset.variant = 'Alphabatic';
+                btnAlphabetic.onclick = () => { setActive(btnAlphabetic); fetchVocabulary(level, 'Alphabatic'); };
 
-            switchContainer.appendChild(btnStandard);
-            switchContainer.appendChild(btnSupertest);
-            switchContainer.appendChild(btnAlphabetic);
+                switchContainer.appendChild(btnStandard);
+                switchContainer.appendChild(btnSupertest);
+                switchContainer.appendChild(btnAlphabetic);
+            } else if (level === '3') {
+                const btnStandard = document.createElement('button');
+                btnStandard.textContent = 'Standard Course';
+                btnStandard.className = 'source-btn active';
+                btnStandard.dataset.variant = 'Chapterbased';
+                btnStandard.onclick = () => { setActive(btnStandard); fetchVocabulary(level, 'Chapterbased'); };
+
+                const btnAlphabetic = document.createElement('button');
+                btnAlphabetic.textContent = 'Alphabetic Wordlist';
+                btnAlphabetic.className = 'source-btn';
+                btnAlphabetic.dataset.variant = 'Alphabetic';
+                btnAlphabetic.onclick = () => { setActive(btnAlphabetic); fetchVocabulary(level, 'Alphabetic'); };
+
+                switchContainer.appendChild(btnStandard);
+                switchContainer.appendChild(btnAlphabetic);
+            }
+
             heroContainer.appendChild(switchContainer);
 
             // --- 1.b Expand/Collapse All ---
@@ -237,52 +242,44 @@ function initLevelPage(level) {
             toggleAllBtn.onclick = () => {
                 const headers = document.querySelectorAll('.chapter-header');
                 const isExpand = toggleAllBtn.textContent.includes('Expand');
-                
                 headers.forEach(header => {
-                    // Simulate click if needed or force open
-                    // We need to find the specific rows
-                    // But simpler: just inspect state.
                     const isOpen = header.querySelector('.toggle-icon').style.transform === 'rotate(90deg)';
-                    
-                    if (isExpand && !isOpen) {
-                        header.click();
-                    } else if (!isExpand && isOpen) {
+                    if ((isExpand && !isOpen) || (!isExpand && isOpen)) {
                         header.click();
                     }
                 });
-                
                 toggleAllBtn.textContent = isExpand ? 'Collapse All' : 'Expand All';
             };
-
             heroContainer.appendChild(toggleAllBtn);
 
-
-            // --- 2. Read Book Button ---
-            const btnLink = document.createElement('a');
-            btnLink.href = 'book.html';
-            btnLink.className = 'book-btn';
-            btnLink.style.display = 'inline-block';
-            btnLink.style.marginTop = '0.5rem';
-            btnLink.style.backgroundColor = 'var(--white)';
-            btnLink.style.color = 'var(--theme-primary)';
-            btnLink.style.padding = '0.75rem 1.5rem';
-            btnLink.style.borderRadius = '30px';
-            btnLink.style.textDecoration = 'none';
-            btnLink.style.fontWeight = 'bold';
-            btnLink.style.boxShadow = '0 4px 6px rgba(0,0,0,0.1)';
-            btnLink.innerHTML = '📖 Read HSK 4 Standard Course';
-            
-            btnLink.onmouseover = () => {
-                btnLink.style.transform = 'translateY(-2px)';
-                btnLink.style.boxShadow = '0 6px 12px rgba(0,0,0,0.15)';
-            };
-            btnLink.onmouseout = () => {
-                btnLink.style.transform = 'translateY(0)';
+            // --- 2. Read Book Button (Only HSK 4) ---
+            if (level === '4') {
+                const btnLink = document.createElement('a');
+                btnLink.href = 'book.html';
+                btnLink.className = 'book-btn';
+                btnLink.style.display = 'inline-block';
+                btnLink.style.marginTop = '0.5rem';
+                btnLink.style.backgroundColor = 'var(--white)';
+                btnLink.style.color = 'var(--theme-primary)';
+                btnLink.style.padding = '0.75rem 1.5rem';
+                btnLink.style.borderRadius = '30px';
+                btnLink.style.textDecoration = 'none';
+                btnLink.style.fontWeight = 'bold';
                 btnLink.style.boxShadow = '0 4px 6px rgba(0,0,0,0.1)';
-            };
-            btnLink.style.transition = 'all 0.3s ease';
+                btnLink.innerHTML = '📖 Read HSK 4 Standard Course';
+                
+                btnLink.onmouseover = () => {
+                    btnLink.style.transform = 'translateY(-2px)';
+                    btnLink.style.boxShadow = '0 6px 12px rgba(0,0,0,0.15)';
+                };
+                btnLink.onmouseout = () => {
+                    btnLink.style.transform = 'translateY(0)';
+                    btnLink.style.boxShadow = '0 4px 6px rgba(0,0,0,0.1)';
+                };
+                btnLink.style.transition = 'all 0.3s ease';
 
-            heroContainer.appendChild(btnLink);
+                heroContainer.appendChild(btnLink);
+            }
         }
     }
 
@@ -321,17 +318,16 @@ function initLevelPage(level) {
              if(confirm('Are you sure you want to clear your progress for this level?')) {
                  saveLearnedWords(level, []);
                  // Re-render to update checkboxes
-                 // We can trigger a re-fetch or just update DOM directly. 
-                 // Re-fetch is safer to sync everything.
                  const currentVariantButton = document.querySelector('.source-btn.active');
-                 const variant = (currentVariantButton && currentVariantButton.textContent.includes('SuperTest')) ? 'Supertest' : '';
+                 const variant = currentVariantButton ? (currentVariantButton.dataset.variant || '') : (level === '3' ? 'Chapterbased' : '');
                  fetchVocabulary(level, variant);
              }
         });
     }
 
     // Call the fetch function
-    fetchVocabulary(level);
+    const startVariant = (level === '3') ? 'Chapterbased' : '';
+    fetchVocabulary(level, startVariant);
 }
 
 // --- Storage Helpers ---
